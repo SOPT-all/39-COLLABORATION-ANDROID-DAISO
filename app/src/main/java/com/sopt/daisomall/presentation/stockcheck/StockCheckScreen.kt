@@ -15,7 +15,7 @@ fun StockCheckRoute(
 }
 
 @Composable
-fun StockCheckScreen(
+private fun StockCheckScreen(
     modifier: Modifier = Modifier
 ) {
 
@@ -24,7 +24,7 @@ fun StockCheckScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun StockCheckScreenPreview() {
+private fun StockCheckScreenPreview() {
     DaisoMallTheme {
         StockCheckScreen()
     }

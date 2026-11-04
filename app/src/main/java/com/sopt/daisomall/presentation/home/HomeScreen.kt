@@ -15,7 +15,7 @@ fun HomeRoute(
 }
 
 @Composable
-fun HomeScreen(
+private fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
 
@@ -24,7 +24,7 @@ fun HomeScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
+private fun HomeScreenPreview() {
     DaisoMallTheme {
         HomeScreen()
     }

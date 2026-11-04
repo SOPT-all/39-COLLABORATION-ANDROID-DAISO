@@ -6,7 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 
 @Composable
-fun HomeRoute(
+fun SearchRoute(
     modifier: Modifier = Modifier
 ) {
     SearchScreen(
@@ -15,7 +15,7 @@ fun HomeRoute(
 }
 
 @Composable
-fun SearchScreen(
+private fun SearchScreen(
     modifier: Modifier = Modifier
 ) {
 
@@ -24,7 +24,7 @@ fun SearchScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun SearchScreenPreview() {
+private fun SearchScreenPreview() {
     DaisoMallTheme {
         SearchScreen()
     }
