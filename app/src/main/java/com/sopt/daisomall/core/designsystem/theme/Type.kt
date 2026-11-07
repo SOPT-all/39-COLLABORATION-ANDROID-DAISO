@@ -32,7 +32,7 @@ data class DaisoTypography(
     val caption_sb_10 : TextStyle,
     val caption_r_10 : TextStyle,
     val caption_b_10 : TextStyle,
-    val caption_mb_10 : TextStyle,
+    val caption_m_10 : TextStyle,
     val caption_b_8 : TextStyle,
 )
 
@@ -117,7 +117,7 @@ val defaultDaisoTypography = DaisoTypography(
         fontSize = 10.sp,
         letterSpacing = (-0.01).em,
     ),
-    caption_mb_10 = DaisoTextStyle(
+    caption_m_10 = DaisoTextStyle(
         fontFamily = PretendardFont.medium,
         fontSize = 10.sp,
         letterSpacing = (-0.01).em,
