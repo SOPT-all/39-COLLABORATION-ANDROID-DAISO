@@ -1,12 +1,34 @@
 package com.sopt.daisomall.core.designsystem.theme
-
-
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val gray_1 = Color(0xFFF0F0F0)
+val gray_2 = Color(0xFFDBDBDB)
+val gray_3 = Color(0xFFBFBFBF)
+val gray_4 = Color(0xFFA2A2A2)
+val gray_5 = Color(0xFF868686)
+val gray_6 = Color(0xFF6B6B6B)
+val gray_7 = Color(0xFF5B5B5B)
+val gray_8 = Color(0xFF4C4C4C)
+val gray_9 = Color(0xFF3D3D3D)
+val gray_10 = Color(0xFF303030)
+val black = Color(0xFF191919)
+val white = Color(0xFFFFFFFF)
+val primary_red = Color(0xFFD70011)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+@Immutable
+data class DaisoColors(
+    val gray_1: Color,
+    val gray_2: Color,
+    val gray_3: Color,
+    val gray_4: Color,
+    val gray_5: Color,
+    val gray_6: Color,
+    val gray_7: Color,
+    val gray_8: Color,
+    val gray_9: Color,
+    val gray_10: Color,
+    val black: Color,
+    val White: Color,
+    val primary_red: Color,
+)
