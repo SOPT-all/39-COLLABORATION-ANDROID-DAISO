@@ -1,6 +1,8 @@
 package com.sopt.daisomall.core.designsystem.theme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Red
+import androidx.compose.ui.graphics.Color.Companion.White
 
 val gray_1 = Color(0xFFF0F0F0)
 val gray_2 = Color(0xFFDBDBDB)
@@ -31,4 +33,20 @@ data class DaisoColors(
     val black: Color,
     val White: Color,
     val primary_red: Color,
+)
+
+val defaultDaisoColors = DaisoColors(
+    gray_1 = gray_1,
+    gray_2 = gray_2,
+    gray_3 = gray_3,
+    gray_4 = gray_4,
+    gray_5 = gray_5,
+    gray_6 = gray_6,
+    gray_7 = gray_7,
+    gray_8 = gray_8,
+    gray_9 = gray_9,
+    gray_10 = gray_10,
+    black = black,
+    White = White,
+    primary_red = primary_red,
 )
