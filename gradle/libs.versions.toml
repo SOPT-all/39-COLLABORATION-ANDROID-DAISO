@@ -1,6 +1,6 @@
 [versions]
 # Build Tools
-agp = "9.4.1"
+agp = "9.2.0"
 
 # AndroidX
 coreKtx = "1.19.1"
