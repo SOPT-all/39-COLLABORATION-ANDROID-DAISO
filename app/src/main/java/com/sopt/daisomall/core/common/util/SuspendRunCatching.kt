@@ -1,4 +1,4 @@
-package com.sopt.daisomall.core.util
+package com.sopt.daisomall.core.common.util
 
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.currentCoroutineContext

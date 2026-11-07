@@ -1,4 +1,4 @@
-package com.sopt.daisomall.core.extensions
+package com.sopt.daisomall.core.common.extensions
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
