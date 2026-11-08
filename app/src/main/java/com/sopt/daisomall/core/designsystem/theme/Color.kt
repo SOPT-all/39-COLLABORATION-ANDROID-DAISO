@@ -73,7 +73,6 @@ private fun DaisoColorPreview() {
     DaisoMallTheme {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
