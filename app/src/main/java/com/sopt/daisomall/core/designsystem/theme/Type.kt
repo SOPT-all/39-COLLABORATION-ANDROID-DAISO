@@ -27,23 +27,37 @@ object PretendardFont {
 
 @Immutable
 data class DaisoTypography(
-    val title_b_24: TextStyle,
-    val title_b_18: TextStyle,
+    val title: TitleStyle,
+    val body: BodyStyle,
+    val caption: CaptionStyle,
+)
 
-    val body_b_16 : TextStyle,
-    val body_m_16 : TextStyle,
-    val body_m_14 : TextStyle,
-    val body_b_14 : TextStyle,
-    val body_r_14 : TextStyle,
-    val body_m_12 : TextStyle,
-    val body_r_12 : TextStyle,
-    val body_m_11 : TextStyle,
+@Immutable
+data class TitleStyle(
+    val b24: TextStyle,
+    val b18: TextStyle,
+)
 
-    val caption_sb_10 : TextStyle,
-    val caption_r_10 : TextStyle,
-    val caption_b_10 : TextStyle,
-    val caption_m_10 : TextStyle,
-    val caption_b_8 : TextStyle,
+@Immutable
+data class BodyStyle(
+    val b16: TextStyle,
+    val m16: TextStyle,
+    val m14: TextStyle,
+    val b14: TextStyle,
+    val r14: TextStyle,
+    val sb12: TextStyle,
+    val m12: TextStyle,
+    val r12: TextStyle,
+    val m11: TextStyle,
+)
+
+@Immutable
+data class CaptionStyle(
+    val sb10: TextStyle,
+    val r10: TextStyle,
+    val b10: TextStyle,
+    val m10: TextStyle,
+    val b8: TextStyle,
 )
 
 private fun daisoTextStyle(
@@ -61,83 +75,96 @@ private fun daisoTextStyle(
     ),
 )
 
+
 val defaultDaisoTypography = DaisoTypography(
-    title_b_24 = daisoTextStyle(
-        fontFamily = PretendardFont.bold,
-        fontSize = 24.sp,
-        letterSpacing = (-0.04).em,
+    title = TitleStyle(
+        b24 = daisoTextStyle(
+            fontFamily = PretendardFont.bold,
+            fontSize = 24.sp,
+            letterSpacing = (-0.04).em,
+        ),
+        b18 = daisoTextStyle(
+            fontFamily = PretendardFont.bold,
+            fontSize = 18.sp,
+            letterSpacing = (-0.01).em,
+        ),
     ),
-    title_b_18 = daisoTextStyle(
-        fontFamily = PretendardFont.bold,
-        fontSize = 18.sp,
-        letterSpacing = (-0.01).em,
+    body = BodyStyle(
+        b16 = daisoTextStyle(
+            fontFamily = PretendardFont.bold,
+            fontSize = 16.sp,
+            letterSpacing = (-0.02).em,
+        ),
+        m16 = daisoTextStyle(
+            fontFamily = PretendardFont.medium,
+            fontSize = 16.sp,
+            letterSpacing = (-0.04).em,
+        ),
+        m14 = daisoTextStyle(
+            fontFamily = PretendardFont.medium,
+            fontSize = 14.sp,
+            letterSpacing = (-0.02).em,
+        ),
+        b14 = daisoTextStyle(
+            fontFamily = PretendardFont.bold,
+            fontSize = 14.sp,
+            letterSpacing = (0.00).em,
+        ),
+        r14 = daisoTextStyle(
+            fontFamily = PretendardFont.regular,
+            fontSize = 14.sp,
+            letterSpacing = (-0.01).em,
+        ),
+        sb12 = daisoTextStyle(
+            fontFamily = PretendardFont.semiBold,
+            fontSize = 12.sp,
+            letterSpacing = (-0.02).em,
+        ),
+        m12 = daisoTextStyle(
+            fontFamily = PretendardFont.medium,
+            fontSize = 12.sp,
+            letterSpacing = (-0.02).em,
+        ),
+        r12 = daisoTextStyle(
+            fontFamily = PretendardFont.regular,
+            fontSize = 12.sp,
+            letterSpacing = (-0.04).em,
+        ),
+        m11 = daisoTextStyle(
+            fontFamily = PretendardFont.medium,
+            fontSize = 11.sp,
+            letterSpacing = (0.02).em,
+        ),
     ),
-    body_b_16 = daisoTextStyle(
-        fontFamily = PretendardFont.bold,
-        fontSize = 16.sp,
-        letterSpacing = (-0.02).em,
-    ),
-    body_m_16 = daisoTextStyle(
-        fontFamily = PretendardFont.medium,
-        fontSize = 16.sp,
-        letterSpacing = (-0.04).em,
-    ),
-    body_m_14 = daisoTextStyle(
-        fontFamily = PretendardFont.medium,
-        fontSize = 14.sp,
-        letterSpacing = (-0.02).em,
-    ),
-    body_b_14 = daisoTextStyle(
-        fontFamily = PretendardFont.bold,
-        fontSize = 14.sp,
-        letterSpacing = (0.00).em,
-    ),
-    body_r_14 = daisoTextStyle(
-        fontFamily = PretendardFont.regular,
-        fontSize = 14.sp,
-        letterSpacing = (-0.01).em,
-    ),
-    body_m_12 = daisoTextStyle(
-        fontFamily = PretendardFont.medium,
-        fontSize = 12.sp,
-        letterSpacing = (-0.02).em,
-    ),
-    body_r_12 = daisoTextStyle(
-        fontFamily = PretendardFont.regular,
-        fontSize = 12.sp,
-        letterSpacing = (-0.04).em,
-    ),
-    body_m_11 = daisoTextStyle(
-        fontFamily = PretendardFont.medium,
-        fontSize = 11.sp,
-        letterSpacing = (0.02).em,
-    ),
-    caption_sb_10 = daisoTextStyle(
-        fontFamily = PretendardFont.semiBold,
-        fontSize = 10.sp,
-        letterSpacing = (-0.04).em,
-    ),
-    caption_r_10 = daisoTextStyle(
-        fontFamily = PretendardFont.regular,
-        fontSize = 10.sp,
-        letterSpacing = (-0.04).em,
-    ),
-    caption_b_10 = daisoTextStyle(
-        fontFamily = PretendardFont.bold,
-        fontSize = 10.sp,
-        letterSpacing = (-0.01).em,
-    ),
-    caption_m_10 = daisoTextStyle(
-        fontFamily = PretendardFont.medium,
-        fontSize = 10.sp,
-        letterSpacing = (-0.01).em,
-    ),
-    caption_b_8 = daisoTextStyle(
-        fontFamily = PretendardFont.bold,
-        fontSize = 8.sp,
-        letterSpacing = 0.em,
+    caption = CaptionStyle(
+        sb10 = daisoTextStyle(
+            fontFamily = PretendardFont.semiBold,
+            fontSize = 10.sp,
+            letterSpacing = (-0.04).em,
+        ),
+        r10 = daisoTextStyle(
+            fontFamily = PretendardFont.regular,
+            fontSize = 10.sp,
+            letterSpacing = (-0.04).em,
+        ),
+        b10 = daisoTextStyle(
+            fontFamily = PretendardFont.bold,
+            fontSize = 10.sp,
+            letterSpacing = (-0.01).em,
+        ),
+        m10 = daisoTextStyle(
+            fontFamily = PretendardFont.medium,
+            fontSize = 10.sp,
+            letterSpacing = (-0.01).em,
+        ),
+        b8 = daisoTextStyle(
+            fontFamily = PretendardFont.bold,
+            fontSize = 8.sp,
+            letterSpacing = 0.em,
+        ),
     ),
 )
+
 
 @Preview(showBackground = true)
 @Composable
@@ -149,63 +176,67 @@ private fun DaisoTypographyPreview() {
         ) {
             Text(
                 text = "Title b24",
-                style = DaisoTheme.typography.title_b_24,
+                style = DaisoTheme.typography.title.b24,
             )
             Text(
                 text = "Title b18",
-                style = DaisoTheme.typography.title_b_18,
+                style = DaisoTheme.typography.title.b18,
             )
             Text(
                 text = "Body b16",
-                style = DaisoTheme.typography.body_b_16,
+                style = DaisoTheme.typography.body.b16,
             )
             Text(
                 text = "Body m16",
-                style = DaisoTheme.typography.body_m_16,
+                style = DaisoTheme.typography.body.m16,
             )
             Text(
                 text = "Body m14",
-                style = DaisoTheme.typography.body_m_14,
+                style = DaisoTheme.typography.body.m14,
             )
             Text(
                 text = "Body b14",
-                style = DaisoTheme.typography.body_b_14,
+                style = DaisoTheme.typography.body.b14,
             )
             Text(
                 text = "Body r14",
-                style = DaisoTheme.typography.body_r_14,
+                style = DaisoTheme.typography.body.r14,
+            )
+            Text(
+                text = "Body sb12",
+                style = DaisoTheme.typography.body.sb12,
             )
             Text(
                 text = "Body m12",
-                style = DaisoTheme.typography.body_m_12,
+                style = DaisoTheme.typography.body.m12,
             )
             Text(
                 text = "Body r12",
-                style = DaisoTheme.typography.body_r_12,
+                style = DaisoTheme.typography.body.r12,
             )
             Text(
                 text = "Body m11",
-                style = DaisoTheme.typography.body_m_11,
+                style = DaisoTheme.typography.body.m11,
             )
             Text(
                 text = "Caption sb10",
-                style = DaisoTheme.typography.caption_sb_10,
+                style = DaisoTheme.typography.caption.sb10,
             )
             Text(
                 text = "Caption r10",
-                style = DaisoTheme.typography.caption_r_10,
+                style = DaisoTheme.typography.caption.r10,
             )
             Text(
                 text = "Caption b10",
-                style = DaisoTheme.typography.caption_b_10,
+                style = DaisoTheme.typography.caption.b10,
             )
             Text(
                 text = "Caption m10",
-                style = DaisoTheme.typography.caption_m_10,
+                style = DaisoTheme.typography.caption.m10,
             )
             Text(
                 text = "Caption b8",
-                style = DaisoTheme.typography.caption_b_8,
+                style = DaisoTheme.typography.caption.b8,
             )
         }
     }
