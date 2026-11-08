@@ -57,9 +57,4 @@ fun DaisoMallTheme(
             content = content,
         )
     }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        content = content
-    )
 }
