@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -18,12 +19,12 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.sopt.daisomall.R
 
-object PretendardFont {
-    val bold = FontFamily(Font(R.font.pretendard_bold))
-    val medium = FontFamily(Font(R.font.pretendard_medium))
-    val regular = FontFamily(Font(R.font.pretendard_regular))
-    val semiBold = FontFamily(Font(R.font.pretendard_semibold))
-}
+private val Pretendard = FontFamily(
+    Font(R.font.pretendard_regular, FontWeight.Normal),
+    Font(R.font.pretendard_medium, FontWeight.Medium),
+    Font(R.font.pretendard_semibold, FontWeight.SemiBold),
+    Font(R.font.pretendard_bold, FontWeight.Bold),
+)
 
 @Immutable
 data class DaisoTypography(
@@ -61,11 +62,12 @@ data class CaptionStyle(
 )
 
 private fun daisoTextStyle(
-    fontFamily: FontFamily,
+    fontWeight: FontWeight,
     fontSize: TextUnit,
     letterSpacing: TextUnit,
 ): TextStyle = TextStyle(
-    fontFamily = fontFamily,
+    fontFamily = Pretendard,
+    fontWeight = fontWeight,
     fontSize = fontSize,
     lineHeight = 1.2.em,
     letterSpacing = letterSpacing,
@@ -78,92 +80,91 @@ private fun daisoTextStyle(
 val defaultDaisoTypography = DaisoTypography(
     title = TitleStyle(
         b24 = daisoTextStyle(
-            fontFamily = PretendardFont.bold,
+            fontWeight = FontWeight.Bold,
             fontSize = 24.sp,
             letterSpacing = (-0.04).em,
         ),
         b18 = daisoTextStyle(
-            fontFamily = PretendardFont.bold,
+            fontWeight = FontWeight.Bold,
             fontSize = 18.sp,
             letterSpacing = (-0.01).em,
         ),
     ),
     body = BodyStyle(
         b16 = daisoTextStyle(
-            fontFamily = PretendardFont.bold,
+            fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
             letterSpacing = (-0.02).em,
         ),
         m16 = daisoTextStyle(
-            fontFamily = PretendardFont.medium,
+            fontWeight = FontWeight.Medium,
             fontSize = 16.sp,
             letterSpacing = (-0.04).em,
         ),
         m14 = daisoTextStyle(
-            fontFamily = PretendardFont.medium,
+            fontWeight = FontWeight.Medium,
             fontSize = 14.sp,
             letterSpacing = (-0.02).em,
         ),
         b14 = daisoTextStyle(
-            fontFamily = PretendardFont.bold,
+            fontWeight = FontWeight.Bold,
             fontSize = 14.sp,
             letterSpacing = (0.00).em,
         ),
         r14 = daisoTextStyle(
-            fontFamily = PretendardFont.regular,
+            fontWeight = FontWeight.Normal,
             fontSize = 14.sp,
             letterSpacing = (-0.01).em,
         ),
         sb12 = daisoTextStyle(
-            fontFamily = PretendardFont.semiBold,
+            fontWeight = FontWeight.SemiBold,
             fontSize = 12.sp,
             letterSpacing = (-0.02).em,
         ),
         m12 = daisoTextStyle(
-            fontFamily = PretendardFont.medium,
+            fontWeight = FontWeight.Medium,
             fontSize = 12.sp,
             letterSpacing = (-0.02).em,
         ),
         r12 = daisoTextStyle(
-            fontFamily = PretendardFont.regular,
+            fontWeight = FontWeight.Normal,
             fontSize = 12.sp,
             letterSpacing = (-0.04).em,
         ),
         m11 = daisoTextStyle(
-            fontFamily = PretendardFont.medium,
+            fontWeight = FontWeight.Medium,
             fontSize = 11.sp,
             letterSpacing = (0.02).em,
         ),
     ),
     caption = CaptionStyle(
         sb10 = daisoTextStyle(
-            fontFamily = PretendardFont.semiBold,
+            fontWeight = FontWeight.SemiBold,
             fontSize = 10.sp,
             letterSpacing = (-0.04).em,
         ),
         r10 = daisoTextStyle(
-            fontFamily = PretendardFont.regular,
+            fontWeight = FontWeight.Normal,
             fontSize = 10.sp,
             letterSpacing = (-0.04).em,
         ),
         b10 = daisoTextStyle(
-            fontFamily = PretendardFont.bold,
+            fontWeight = FontWeight.Bold,
             fontSize = 10.sp,
             letterSpacing = (-0.01).em,
         ),
         m10 = daisoTextStyle(
-            fontFamily = PretendardFont.medium,
+            fontWeight = FontWeight.Medium,
             fontSize = 10.sp,
             letterSpacing = (-0.01).em,
         ),
         b8 = daisoTextStyle(
-            fontFamily = PretendardFont.bold,
+            fontWeight = FontWeight.Bold,
             fontSize = 8.sp,
             letterSpacing = 0.em,
         ),
     ),
 )
-
 
 @Preview(showBackground = true)
 @Composable
