@@ -75,7 +75,6 @@ private fun daisoTextStyle(
     ),
 )
 
-
 val defaultDaisoTypography = DaisoTypography(
     title = TitleStyle(
         b24 = daisoTextStyle(

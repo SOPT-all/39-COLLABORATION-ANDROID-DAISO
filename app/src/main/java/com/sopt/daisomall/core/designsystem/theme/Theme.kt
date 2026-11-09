@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.graphics.Color.Companion.White
 
 private val LocalDaisoColors =
     staticCompositionLocalOf { defaultDaisoColors }
@@ -27,7 +26,7 @@ object DaisoTheme {
 }
 
 private val DaisoMaterialColorScheme = lightColorScheme(
-    background = White,
+    background = defaultDaisoColors.white,
 )
 
 @Composable
