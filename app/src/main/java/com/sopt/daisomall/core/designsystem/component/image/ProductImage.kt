@@ -22,7 +22,7 @@ import com.sopt.daisomall.core.common.extensions.noRippleClickable
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 
 @Composable
-fun ProductImage(
+fun DaisoProductImage(
     imageUrl: String,
     width: Dp,
     height: Dp,
@@ -54,12 +54,12 @@ fun ProductImage(
 
 @Preview
 @Composable
-private fun ProductImagePreview() {
+private fun DaisoProductImagePreview() {
     DaisoMallTheme {
         Row(
             modifier = Modifier.padding(all = 20.dp),
         ) {
-            ProductImage(
+            DaisoProductImage(
                 imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb_ZNwn_XtKKbiDZni5QZXKpcGE7xlo_idImuNR982eg&s=10",
                 width = 112.dp,
                 height = 148.dp,
@@ -69,7 +69,7 @@ private fun ProductImagePreview() {
 
             Spacer(modifier = Modifier.width(10.dp))
 
-            ProductImage(
+            DaisoProductImage(
                 imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb_ZNwn_XtKKbiDZni5QZXKpcGE7xlo_idImuNR982eg&s=10",
                 width = 112.dp,
                 height = 148.dp,
