@@ -1,4 +1,4 @@
-package com.sopt.daisomall.core.designsystem.component
+package com.sopt.daisomall.core.designsystem.component.toggle
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -18,7 +18,7 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
-fun DaisoMallToggle(
+fun DaisoToggle(
     modifier: Modifier = Modifier,
 ) {
     Row (
@@ -63,9 +63,9 @@ private fun ToggleChip(
 
 @Preview(showBackground = true)
 @Composable
-private fun DaisoMallTogglePreview() {
+private fun DaisoTogglePreview() {
     DaisoMallTheme {
-        DaisoMallToggle(
+        DaisoToggle(
             modifier = Modifier.width(84.dp),
         )
     }
