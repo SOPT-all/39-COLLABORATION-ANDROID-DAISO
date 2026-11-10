@@ -25,7 +25,6 @@ fun DaisoToggle(
         modifier = modifier
             .clip(RoundedCornerShape(10.dp))
             .background(DaisoTheme.colors.white),
-        verticalAlignment = Alignment.CenterVertically,
     ) {
         ToggleChip(
             text = "매장",
