@@ -19,9 +19,6 @@ fun HomeRoute(
 private fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
-    Text(
-       text = "효정,서현 안녕"
-    )
 }
 
 
