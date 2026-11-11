@@ -1,6 +1,5 @@
 package com.sopt.daisomall.core.designsystem.component.chip
 
-import android.R.attr.onClick
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
