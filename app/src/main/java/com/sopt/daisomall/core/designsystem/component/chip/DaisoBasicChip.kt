@@ -17,14 +17,13 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.core.common.extensions.noRippleClickable
-import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
 fun DaisoBasicChip(
     text: String,
-    backgroundColor: Color,
     textColor: Color,
     textStyle: TextStyle,
+    backgroundColor: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     borderColor: Color = Color.Transparent,
