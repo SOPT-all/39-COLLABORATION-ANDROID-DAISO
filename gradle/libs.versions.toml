@@ -36,6 +36,7 @@ coil = "3.6.3"
 
 # Logging
 timber = "5.0.1"
+uiGraphics = "1.12.1"
 
 [libraries]
 # AndroidX
@@ -77,6 +78,7 @@ coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp"
 
 # Logging
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "uiGraphics" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

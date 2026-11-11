@@ -38,6 +38,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.ui.graphics)
     // AndroidX
     implementation(libs.bundles.androidx.core)
 
