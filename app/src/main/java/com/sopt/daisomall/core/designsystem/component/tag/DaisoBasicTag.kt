@@ -26,15 +26,11 @@ fun DaisoBasicTag(
     verticalPadding: Dp,
     modifier: Modifier = Modifier,
     tagBorderColor: Color = Color.Transparent,
-){
-    val hasBorder = tagBorderColor != Color.Transparent
-
+) {
     Text(
         text = tagText,
         modifier = modifier
-            .then(
-                if (hasBorder) Modifier.border(width = 1.dp, color = tagBorderColor) else Modifier,
-            )
+            .border(width = 1.dp, color = tagBorderColor)
             .background(color = tagBackgroundColor)
             .padding(horizontal = horizontalPadding, vertical = verticalPadding),
         color = tagTextColor,
@@ -44,12 +40,11 @@ fun DaisoBasicTag(
 
 @Preview
 @Composable
-private fun PreviewDaisoBasicTag(){
+private fun PreviewDaisoBasicTag() {
     DaisoMallTheme {
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp),
         ) {
-
             DaisoBasicTag(
                 tagText = "택배",
                 tagTextColor = DaisoTheme.colors.gray8,
