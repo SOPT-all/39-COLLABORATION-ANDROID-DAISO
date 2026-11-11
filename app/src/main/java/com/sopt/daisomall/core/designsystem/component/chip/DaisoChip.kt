@@ -26,24 +26,23 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
 fun DaisoChip(
-    chipText: String,
-    chipBackgroundColor: Color,
-    chipTextColor: Color,
-    onChipClick: () -> Unit,
+    text: String,
+    backgroundColor: Color,
+    textColor: Color,
+    onClick: () -> Unit,
     isDropdown: Boolean,
     modifier: Modifier = Modifier,
-    chipBorderColor: Color = Color.Transparent,
+    borderColor: Color = Color.Transparent,
     @DrawableRes frontIcon: Int? = null,
     @DrawableRes backIcon: Int? = null,
 ) {
-    val hasBorder = chipBorderColor != Color.Transparent
+    val hasBorder = borderColor != Color.Transparent
 
     Row(
         modifier = modifier
-            .clip(shape = CircleShape)
-            .background(color = chipBackgroundColor)
-            .border(1.dp, color = chipBorderColor, shape = CircleShape)
-            .noRippleClickable(onClick = onChipClick)
+            .background(color = backgroundColor, shape = CircleShape)
+            .border(1.dp, color = borderColor, shape = CircleShape)
+            .noRippleClickable(onClick = onClick)
             .padding(
                 horizontal = if (hasBorder) 11.dp else 10.dp,
                 vertical = if (hasBorder) 7.dp else 6.dp,
@@ -59,8 +58,8 @@ fun DaisoChip(
         }
 
         Text(
-            text = chipText,
-            color = chipTextColor,
+            text = text,
+            color = textColor,
             style = if (isDropdown) DaisoTheme.typography.body.r14 else DaisoTheme.typography.body.m12,
         )
 
@@ -68,7 +67,7 @@ fun DaisoChip(
             Icon(
                 imageVector = ImageVector.vectorResource(backIcon),
                 contentDescription = null,
-                tint = chipTextColor,
+                tint = textColor,
             )
         }
     }
@@ -83,40 +82,40 @@ private fun DaisoChipPreview() {
         ) {
             // Default
             DaisoChip(
-                chipText = "텍스트",
-                chipBackgroundColor = DaisoTheme.colors.white,
-                chipTextColor = DaisoTheme.colors.gray10,
-                onChipClick = {},
+                text = "텍스트",
+                backgroundColor = DaisoTheme.colors.white,
+                textColor = DaisoTheme.colors.gray10,
+                onClick = {},
                 isDropdown = false,
-                chipBorderColor = DaisoTheme.colors.gray1,
+                borderColor = DaisoTheme.colors.gray1,
                 frontIcon = R.drawable.ic_run_20,
             )
             // selected
             DaisoChip(
-                chipText = "텍스트",
-                chipBackgroundColor = DaisoTheme.colors.gray9,
-                chipTextColor = DaisoTheme.colors.white,
-                onChipClick = {},
+                text = "텍스트",
+                backgroundColor = DaisoTheme.colors.gray9,
+                textColor = DaisoTheme.colors.white,
+                onClick = {},
                 isDropdown = false,
                 backIcon = R.drawable.ic_close_20,
             )
             // dropdown
             DaisoChip(
-                chipText = "텍스트",
-                chipBackgroundColor = Color.Transparent,
-                chipTextColor = DaisoTheme.colors.gray10,
-                onChipClick = {},
-                isDropdown = false,
-                chipBorderColor = DaisoTheme.colors.gray1,
+                text = "텍스트",
+                backgroundColor = Color.Transparent,
+                textColor = DaisoTheme.colors.gray10,
+                onClick = {},
+                isDropdown = true,
+                borderColor = DaisoTheme.colors.gray1,
                 backIcon = R.drawable.ic_arrow_down_18,
             )
             // dropdown_grey
             DaisoChip(
-                chipText = "텍스트",
-                chipBackgroundColor = DaisoTheme.colors.gray1,
-                chipTextColor = DaisoTheme.colors.black,
-                onChipClick = {},
-                isDropdown = false,
+                text = "텍스트",
+                backgroundColor = DaisoTheme.colors.gray1,
+                textColor = DaisoTheme.colors.black,
+                onClick = {},
+                isDropdown = true,
                 backIcon = R.drawable.ic_arrow_down_18,
             )
         }
