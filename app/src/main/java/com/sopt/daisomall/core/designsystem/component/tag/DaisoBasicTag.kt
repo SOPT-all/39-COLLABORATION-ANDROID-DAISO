@@ -18,23 +18,23 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
 fun DaisoBasicTag(
-    tagText: String,
-    tagTextColor: Color,
-    tagTextStyle: TextStyle,
-    tagBackgroundColor: Color,
+    text: String,
+    textColor: Color,
+    textStyle: TextStyle,
+    backgroundColor: Color,
     horizontalPadding: Dp,
     verticalPadding: Dp,
     modifier: Modifier = Modifier,
-    tagBorderColor: Color = Color.Transparent,
+    borderColor: Color = Color.Transparent,
 ) {
     Text(
-        text = tagText,
+        text = text,
         modifier = modifier
-            .border(width = 1.dp, color = tagBorderColor)
-            .background(color = tagBackgroundColor)
+            .border(width = 1.dp, color = borderColor)
+            .background(color = backgroundColor)
             .padding(horizontal = horizontalPadding, vertical = verticalPadding),
-        color = tagTextColor,
-        style = tagTextStyle,
+        color = textColor,
+        style = textStyle,
     )
 }
 
@@ -46,22 +46,22 @@ private fun PreviewDaisoBasicTag() {
             verticalArrangement = Arrangement.spacedBy(5.dp),
         ) {
             DaisoBasicTag(
-                tagText = "택배",
-                tagTextColor = DaisoTheme.colors.gray8,
-                tagTextStyle = DaisoTheme.typography.caption.b10,
-                tagBackgroundColor = DaisoTheme.colors.gray1,
+                text = "택배",
+                textColor = DaisoTheme.colors.gray8,
+                textStyle = DaisoTheme.typography.caption.b10,
+                backgroundColor = DaisoTheme.colors.gray1,
                 horizontalPadding = 6.dp,
                 verticalPadding = 4.dp,
             )
 
             DaisoBasicTag(
-                tagText = "NEW",
-                tagTextColor = DaisoTheme.colors.black,
-                tagTextStyle = DaisoTheme.typography.caption.sb10,
-                tagBackgroundColor = DaisoTheme.colors.white,
+                text = "NEW",
+                textColor = DaisoTheme.colors.black,
+                textStyle = DaisoTheme.typography.caption.sb10,
+                backgroundColor = DaisoTheme.colors.white,
                 horizontalPadding = 3.dp,
                 verticalPadding = 1.dp,
-                tagBorderColor = DaisoTheme.colors.black,
+                borderColor = DaisoTheme.colors.black,
             )
         }
     }
