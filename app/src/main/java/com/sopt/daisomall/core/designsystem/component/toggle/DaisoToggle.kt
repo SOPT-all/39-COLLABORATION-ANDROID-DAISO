@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -45,15 +44,14 @@ private fun ToggleChip(
     isSelected: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    val colors = DaisoTheme.colors
 
     Text(
         text = text,
         modifier = modifier
             .clip(RoundedCornerShape(10.dp))
-            .background(if (isSelected) colors.gray10 else Color.Transparent)
+            .background(if (isSelected) DaisoTheme.colors.gray10 else Color.Transparent)
             .padding(horizontal = 4.dp, vertical = 8.dp),
-        color = if (isSelected) colors.white else colors.gray9,
+        color = if (isSelected) DaisoTheme.colors.white else DaisoTheme.colors.gray9,
         style = DaisoTheme.typography.body.sb12,
         textAlign = TextAlign.Center,
         maxLines = 1,
