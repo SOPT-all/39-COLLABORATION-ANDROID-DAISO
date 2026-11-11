@@ -1,8 +1,11 @@
-package com.sopt.daisomall.core.designsystem.component
+package com.sopt.daisomall.presentation.stockcheck.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -19,37 +22,43 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 fun LocationTag(
     floor: String,
     number: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    Row (
+    Row(
         modifier = modifier
             .border(1.dp, color = DaisoTheme.colors.gray3)
             .background(color = DaisoTheme.colors.white)
-            .padding(horizontal = 4.dp, vertical = 2.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(horizontal = 5.dp, vertical = 3.dp)
+            .height(IntrinsicSize.Min),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
         Text(
             text = floor,
             style = DaisoTheme.typography.caption.b10,
-            color = DaisoTheme.colors.gray7
+            color = DaisoTheme.colors.gray7,
         )
+
         VerticalDivider(
-            modifier = Modifier.height(10.dp).padding(horizontal = 4.dp),
+            modifier = Modifier
+                .fillMaxHeight()
+                .padding(vertical = 1.dp),
             thickness = 1.dp,
-            color = DaisoTheme.colors.gray3
+            color = DaisoTheme.colors.gray3,
         )
+
         Text(
             text = number,
             style = DaisoTheme.typography.caption.b10,
-            color = DaisoTheme.colors.gray7
+            color = DaisoTheme.colors.gray7,
         )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun LocationTagPreview() {
+private fun LocationTagPreview() {
     DaisoMallTheme {
-        LocationTag(floor = "2F",number = "2번")
+        LocationTag(floor = "2F", number = "2번")
     }
 }
