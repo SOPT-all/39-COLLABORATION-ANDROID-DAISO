@@ -25,7 +25,7 @@ fun DaisoNewTag(
 
 @Preview
 @Composable
-private fun PreviewDaisoNewTag() {
+private fun DaisoNewTagPreview() {
     DaisoMallTheme {
         DaisoNewTag()
     }

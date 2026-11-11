@@ -27,7 +27,7 @@ fun DaisoShippingTag(
 
 @Preview
 @Composable
-private fun PreviewDaisoShippingTag() {
+private fun DaisoShippingTagPreview() {
     DaisoMallTheme {
         Row(
             horizontalArrangement = Arrangement.spacedBy(2.dp),
