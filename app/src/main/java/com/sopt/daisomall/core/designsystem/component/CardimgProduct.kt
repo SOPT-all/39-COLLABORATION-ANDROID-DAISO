@@ -85,7 +85,7 @@ private fun customStatusIcon(
     )
 }
 
-@Preview
+@Preview(name = "영업중")
 @Composable
 private fun cardImgProductOpenPreview() {
     DaisoMallTheme {
@@ -96,7 +96,7 @@ private fun cardImgProductOpenPreview() {
     }
 }
 
-@Preview
+@Preview(name = "영업종료")
 @Composable
 private fun cardImgProductClosePreview() {
     DaisoMallTheme {
