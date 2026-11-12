@@ -32,9 +32,9 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 fun DaisoToggleTextField(
     state: TextFieldState,
     placeholder: String,
+    onSearch: () -> Unit,
     modifier: Modifier = Modifier,
     keyboardOptions: KeyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-    onSearch: () -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -84,11 +84,13 @@ private fun DaisoToggleTextFieldPreview() {
             DaisoToggleTextField(
                 state = rememberTextFieldState(),
                 placeholder = "상품, 품번, 브랜드 검색",
+                onSearch = {},
                 modifier = Modifier.fillMaxWidth(),
             )
             DaisoToggleTextField(
                 state = rememberTextFieldState(initialText = "매장, 지역 검색"),
                 placeholder = "상품, 품번, 브랜드 검색",
+                onSearch = {},
                 modifier = Modifier.fillMaxWidth(),
             )
         }
