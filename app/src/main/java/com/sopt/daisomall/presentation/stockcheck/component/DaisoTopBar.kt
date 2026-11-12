@@ -1,10 +1,9 @@
-package com.sopt.daisomall.core.designsystem.component
+package com.sopt.daisomall.presentation.stockcheck.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.R
+import com.sopt.daisomall.core.common.extensions.noRippleClickable
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
@@ -39,10 +39,10 @@ fun DaisoTopBar(
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left_24),
-            contentDescription = "뒤로 가기",
+            contentDescription = null,
             modifier = Modifier
                 .size(24.dp)
-                .clickable(onClick = onBackClick),
+                .noRippleClickable(onBackClick),
             tint = DaisoTheme.colors.black,
         )
 
