@@ -15,7 +15,7 @@ fun DaisoBlackLineButton(
     modifier: Modifier,
     @DrawableRes icon: Int,
 ) {
-    DaisoBasecButton(
+    DaisoBaseButton(
         text=text,
         onClick=onClick,
         modifier = modifier,

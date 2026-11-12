@@ -25,16 +25,8 @@ import com.sopt.daisomall.core.common.extensions.noRippleClickable
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
-enum class ButtonType{
-    RED_LINE,
-    RED_FILLED,
-    DISABLED,
-    BLACK_LINE,
-    GRAY_LINE
-}
-
 @Composable
-fun DaisoBasecButton(
+fun DaisoBaseButton(
     text: String,
     onClick: ()-> Unit,
     modifier: Modifier,
