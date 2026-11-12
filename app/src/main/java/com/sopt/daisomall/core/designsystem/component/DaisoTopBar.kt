@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,13 +31,11 @@ fun DaisoTopBar(
 ) {
     Row(
         modifier = modifier
-            .width(375.dp)
-            .height(44.dp)
+            .fillMaxWidth()
             .background(color = DaisoTheme.colors.white)
-            .padding(horizontal = 12.dp, vertical = 10.dp)
-        ,
+            .padding(horizontal = 12.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left_24),
@@ -43,15 +43,14 @@ fun DaisoTopBar(
             modifier = Modifier
                 .size(24.dp)
                 .clickable(onClick = onBackClick),
-            tint = DaisoTheme.colors.black
+            tint = DaisoTheme.colors.black,
         )
 
         Text(
             text = title,
-            color = DaisoTheme.colors.gray9,
+            color = DaisoTheme.colors.gray10,
             style = DaisoTheme.typography.title.b18,
-            modifier = Modifier.weight(1f)
-
+            modifier = Modifier.weight(1f),
         )
     }
 }
@@ -62,7 +61,10 @@ private fun DaisoTopBarPreview() {
     DaisoMallTheme {
         DaisoTopBar(
             title = "매장재고 조회",
-            onBackClick = {}
+            onBackClick = {},
+            modifier = Modifier
+                .width(375.dp)
+                .height(44.dp)
         )
     }
 }
