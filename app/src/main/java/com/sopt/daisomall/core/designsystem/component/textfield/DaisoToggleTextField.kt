@@ -65,7 +65,7 @@ fun DaisoToggleTextField(
             suffix = {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_search_20),
-                    contentDescription = "검색",
+                    contentDescription = null,
                     modifier = Modifier.noRippleClickable(onClick = onSearch),
                     tint = DaisoTheme.colors.gray6,
                 )
