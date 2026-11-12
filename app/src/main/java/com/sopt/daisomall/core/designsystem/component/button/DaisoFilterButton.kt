@@ -16,9 +16,7 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
-fun DaisoFilterButton(
-    modifier: Modifier = Modifier,
-) {
+fun DaisoFilter( modifier: Modifier = Modifier, ) {
     Icon(
         imageVector = ImageVector.vectorResource(R.drawable.ic_filter_20),
         contentDescription = null,
@@ -32,8 +30,8 @@ fun DaisoFilterButton(
 
 @Preview
 @Composable
-private fun DaisoFilterButtonPreview() {
+private fun DaisoFilterPreview() {
     DaisoMallTheme {
-        DaisoFilterButton()
+        DaisoFilter()
     }
 }
