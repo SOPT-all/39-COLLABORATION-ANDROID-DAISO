@@ -9,9 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
@@ -23,19 +20,17 @@ fun DaisoToggle(
 ) {
     Row (
         modifier = modifier
-            .clip(RoundedCornerShape(10.dp))
-            .background(DaisoTheme.colors.white)
+            .background(color = DaisoTheme.colors.white, shape = RoundedCornerShape(10.dp))
             .padding(end = 6.dp),
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        ToggleChip(
-            text = "매장",
-            isSelected = true,
-        )
-        ToggleChip(
+        ToggleChip(text = "매장")
+        Text(
             text = "온라인",
-            isSelected = false,
+            color = DaisoTheme.colors.gray9,
+            style = DaisoTheme.typography.body.sb12,
+            maxLines = 1,
         )
     }
 }
@@ -43,25 +38,15 @@ fun DaisoToggle(
 @Composable
 private fun ToggleChip(
     text: String,
-    isSelected: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    val backgroundColor = if (isSelected) DaisoTheme.colors.gray10 else Color.Transparent
-    val textColor = if (isSelected) DaisoTheme.colors.white else DaisoTheme.colors.gray9
-    val horizontalPadding = if (isSelected) 10.dp else 0.dp
-
     Text(
         text = text,
         modifier = modifier
-            .clip(RoundedCornerShape(10.dp))
-            .background(backgroundColor)
-            .padding(
-                horizontal = horizontalPadding,
-                vertical = 8.dp,
-            ),
-        color = textColor,
+            .background(color = DaisoTheme.colors.gray10, shape = RoundedCornerShape(10.dp))
+            .padding(horizontal = 10.dp, vertical = 8.dp),
+        color = DaisoTheme.colors.white,
         style = DaisoTheme.typography.body.sb12,
-        textAlign = TextAlign.Center,
         maxLines = 1,
     )
 }
