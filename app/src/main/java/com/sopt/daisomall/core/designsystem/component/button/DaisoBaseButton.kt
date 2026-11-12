@@ -28,7 +28,7 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 @Composable
 fun DaisoBaseButton(
     text: String,
-    onClick: ()-> Unit,
+    onClick: () -> Unit,
     modifier: Modifier,
     @DrawableRes icon: Int,
     backgroundColor: Color,
@@ -40,7 +40,7 @@ fun DaisoBaseButton(
     ) {
 
     Row(
-        modifier=modifier
+        modifier = modifier
             .run {
                 if (borderColor != null) {
                     border(
@@ -54,29 +54,27 @@ fun DaisoBaseButton(
             }
             .clip(RoundedCornerShape(2.dp))
             .background(backgroundColor)
-            .noRippleClickable(isEnabled = isEnabled, onClick=onClick)
-            .padding(horizontal = 16.dp, vertical = 4.dp),
+            .noRippleClickable(isEnabled = isEnabled, onClick = onClick)
+            .padding(horizontal = 17.dp, vertical = 5.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            painter = painterResource(id=icon),
+            painter = painterResource(id = icon),
             contentDescription = null,
             modifier = Modifier.size(20.dp),
-            tint=contentColor,
+            tint = contentColor,
         )
 
         Text(
             text = text,
-            color= contentColor,
+            color = contentColor,
             style = textStyle,
         )
     }
-    }
-
+}
 
 
 @Preview
-
 @Composable
 private fun DaisoRedFilledButtonPreview() {
     DaisoMallTheme {
