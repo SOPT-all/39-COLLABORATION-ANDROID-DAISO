@@ -30,7 +30,7 @@ fun TitleTopBar(
         modifier = modifier
             .fillMaxWidth()
             .background(color = DaisoTheme.colors.white)
-            .padding(horizontal = 12.dp, vertical = 10.dp),
+            .padding(horizontal = 20.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
