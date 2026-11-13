@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.R
 import com.sopt.daisomall.core.designsystem.component.image.DaisoProductImage
+import com.sopt.daisomall.core.designsystem.component.tag.DaisoNewTag
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
@@ -76,7 +77,7 @@ fun ProductCard(
                     )
                 }
 
-                // TODO: NEW 태그 컴포넌트 머지 후 추가
+                DaisoNewTag()
             }
 
             Spacer(modifier = Modifier.height(2.dp))
