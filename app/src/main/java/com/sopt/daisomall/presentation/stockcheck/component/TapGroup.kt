@@ -34,7 +34,6 @@ fun TabGroup(
             .height(48.dp)
             .background(DaisoTheme.colors.white),
     ) {
-        // 매장 검색 탭
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -80,7 +79,6 @@ fun TabGroup(
             }
         }
 
-        // 관심 매장 탭
         Box(
             modifier = Modifier
                 .weight(1f)
