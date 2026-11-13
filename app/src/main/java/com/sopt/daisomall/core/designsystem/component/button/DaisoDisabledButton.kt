@@ -14,7 +14,7 @@ fun DaisoDisabledButton(
     modifier: Modifier,
     @DrawableRes icon: Int,
 ) {
-    DaisoBaseButton(
+    DaisoBasicButton(
         text=text,
         onClick={},
         modifier = modifier,

@@ -1,5 +1,8 @@
 package com.sopt.daisomall.core.designsystem.component.button
 
+import android.R.attr.onClick
+import android.R.attr.text
+import android.R.attr.textStyle
 import androidx.compose.ui.graphics.Color
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
@@ -26,19 +29,17 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
-fun DaisoBaseButton(
+fun DaisoBasicButton(
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier,
     @DrawableRes icon: Int,
     backgroundColor: Color,
     contentColor: Color,
+    modifier: Modifier= Modifier,
     borderColor: Color? = null,
     textStyle: TextStyle = DaisoTheme.typography.body.m12,
     isEnabled: Boolean = true,
-
     ) {
-
     Row(
         modifier = modifier
             .run {
@@ -55,7 +56,9 @@ fun DaisoBaseButton(
             .clip(RoundedCornerShape(2.dp))
             .background(backgroundColor)
             .noRippleClickable(isEnabled = isEnabled, onClick = onClick)
-            .padding(horizontal = 17.dp, vertical = 5.dp),
+            .padding(horizontal = if (borderColor!=null) 17.dp else 16.dp,
+                vertical = if (borderColor!=null) 5.dp else 4.dp),
+        horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
@@ -73,10 +76,9 @@ fun DaisoBaseButton(
     }
 }
 
-
 @Preview
 @Composable
-private fun DaisoRedFilledButtonPreview() {
+private fun DaisoBasicButtonPreview() {
     DaisoMallTheme {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
