@@ -15,11 +15,11 @@ fun DaisoDisabledButton(
     @DrawableRes icon: Int,
 ) {
     DaisoBasicButton(
-        text=text,
-        onClick={},
+        text = text,
+        onClick = {},
         modifier = modifier,
-        icon=icon,
-        backgroundColor= DaisoTheme.colors.gray2,
+        icon = icon,
+        backgroundColor = DaisoTheme.colors.gray2,
         contentColor = DaisoTheme.colors.gray5,
         isEnabled = false,
     )
@@ -27,12 +27,12 @@ fun DaisoDisabledButton(
 
 @Preview
 @Composable
-private fun DaisoDisabledButtonPreview(){
+private fun DaisoDisabledButtonPreview() {
     DaisoMallTheme {
         DaisoDisabledButton(
-            text="온라인 구매",
-            modifier= Modifier,
-            icon=R.drawable.ic_shoppingbag_small_20,
+            text = "온라인 구매",
+            modifier = Modifier,
+            icon = R.drawable.ic_shoppingbag_small_20,
         )
     }
 }

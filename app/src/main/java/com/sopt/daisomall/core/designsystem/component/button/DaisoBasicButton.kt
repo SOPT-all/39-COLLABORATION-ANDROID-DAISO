@@ -36,7 +36,7 @@ fun DaisoBasicButton(
     borderColor: Color? = null,
     textStyle: TextStyle = DaisoTheme.typography.body.m12,
     isEnabled: Boolean = true,
-    ) {
+) {
     Row(
         modifier = modifier
             .run {
@@ -53,8 +53,10 @@ fun DaisoBasicButton(
             .clip(RoundedCornerShape(2.dp))
             .background(backgroundColor)
             .noRippleClickable(isEnabled = isEnabled, onClick = onClick)
-            .padding(horizontal = if (borderColor!=null) 17.dp else 16.dp,
-                vertical = if (borderColor!=null) 5.dp else 4.dp),
+            .padding(
+                horizontal = if (borderColor!=null) 17.dp else 16.dp,
+                vertical = if (borderColor!=null) 5.dp else 4.dp
+            ),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {

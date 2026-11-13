@@ -11,16 +11,16 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 @Composable
 fun DaisoRedLineButton(
     text: String,
-    onClick: ()-> Unit,
+    onClick: () -> Unit,
     modifier: Modifier,
     @DrawableRes icon: Int,
 ) {
     DaisoBasicButton(
-        text=text,
-        onClick=onClick,
+        text = text,
+        onClick = onClick,
         modifier = modifier,
-        icon=icon,
-        backgroundColor= DaisoTheme.colors.white,
+        icon = icon,
+        backgroundColor = DaisoTheme.colors.white,
         contentColor = DaisoTheme.colors.primaryRed,
         borderColor = DaisoTheme.colors.primaryRed,
         isEnabled = true,
@@ -29,13 +29,13 @@ fun DaisoRedLineButton(
 
 @Preview
 @Composable
-private fun DaisoRedLineButtonPreview(){
+private fun DaisoRedLineButtonPreview() {
     DaisoMallTheme {
         DaisoRedLineButton(
-            text="온라인 구매",
-            onClick={},
-            modifier= Modifier,
-            icon=R.drawable.ic_shoppingbag_small_20,
+            text = "온라인 구매",
+            onClick = {},
+            modifier = Modifier,
+            icon = R.drawable.ic_shoppingbag_small_20,
         )
     }
 }

@@ -12,16 +12,16 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 @Composable
 fun DaisoRedFilledButton(
     text: String,
-    onClick: ()-> Unit,
+    onClick: () -> Unit,
     modifier: Modifier,
     @DrawableRes icon: Int,
 ) {
     DaisoBasicButton(
-        text=text,
-        onClick=onClick,
+        text = text,
+        onClick = onClick,
         modifier = modifier,
-        icon=icon,
-        backgroundColor= DaisoTheme.colors.primaryRed,
+        icon = icon,
+        backgroundColor = DaisoTheme.colors.primaryRed,
         contentColor = DaisoTheme.colors.white,
         isEnabled = true,
     )
@@ -29,17 +29,17 @@ fun DaisoRedFilledButton(
 
 @Preview
 @Composable
-private fun DaisoRedFilledButtonPreview(){
+private fun DaisoRedFilledButtonPreview() {
     DaisoMallTheme {
         Column(
 
         ) {
 
             DaisoRedFilledButton(
-                text="매장픽업",
-                onClick={},
-                modifier= Modifier,
-                icon=R.drawable.ic_shoppingbag_small_20,
+                text = "매장픽업",
+                onClick = {},
+                modifier = Modifier,
+                icon = R.drawable.ic_shoppingbag_small_20,
             )
         }
     }

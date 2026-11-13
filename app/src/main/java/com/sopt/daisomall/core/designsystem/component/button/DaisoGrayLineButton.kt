@@ -11,16 +11,16 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 @Composable
 fun DaisoGrayLineButton(
     text: String,
-    onClick: ()-> Unit,
+    onClick: () -> Unit,
     modifier: Modifier,
     @DrawableRes icon: Int,
 ) {
     DaisoBasicButton(
-        text=text,
-        onClick=onClick,
+        text = text,
+        onClick = onClick,
         modifier = modifier,
-        icon=icon,
-        backgroundColor= DaisoTheme.colors.white,
+        icon = icon,
+        backgroundColor = DaisoTheme.colors.white,
         contentColor = DaisoTheme.colors.gray9,
         borderColor = DaisoTheme.colors.gray2,
         textStyle = DaisoTheme.typography.body.sb12,
@@ -30,13 +30,13 @@ fun DaisoGrayLineButton(
 
 @Preview
 @Composable
-private fun DaisoGrayLineButtonPreview(){
+private fun DaisoGrayLineButtonPreview() {
     DaisoMallTheme {
         DaisoGrayLineButton(
-            text="담기",
-            onClick={},
-            modifier= Modifier,
-            icon=R.drawable.ic_availablestores_20,
+            text = "담기",
+            onClick = {},
+            modifier = Modifier,
+            icon = R.drawable.ic_availablestores_20,
         )
     }
 }
