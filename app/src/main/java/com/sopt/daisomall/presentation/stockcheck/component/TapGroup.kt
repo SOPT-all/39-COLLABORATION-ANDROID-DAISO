@@ -1,3 +1,4 @@
+
 package com.sopt.daisomall.presentation.stockcheck.component
 
 import androidx.compose.foundation.background
@@ -11,10 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +34,7 @@ fun TabGroup(
             .height(48.dp)
             .background(DaisoTheme.colors.white),
     ) {
+        // 매장 검색 탭
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -54,7 +52,11 @@ fun TabGroup(
                     } else {
                         DaisoTheme.colors.gray6
                     },
-                    style = DaisoTheme.typography.body.b14,
+                    style = if (selectedTab == 0) {
+                        DaisoTheme.typography.body.b14
+                    } else {
+                        DaisoTheme.typography.body.m14
+                    },
                 )
 
                 Icon(
@@ -67,21 +69,18 @@ fun TabGroup(
                 )
             }
 
-            Box(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .height(2.dp)
-                    .background(
-                        if (selectedTab == 0) {
-                            DaisoTheme.colors.gray10
-                        } else {
-                            Color.Transparent
-                        },
-                    ),
-            )
+            if (selectedTab == 0) {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .height(2.dp)
+                        .background(DaisoTheme.colors.gray10),
+                )
+            }
         }
 
+        // 관심 매장 탭
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -102,19 +101,15 @@ fun TabGroup(
                 },
             )
 
-            Box(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .height(2.dp)
-                    .background(
-                        if (selectedTab == 1) {
-                            DaisoTheme.colors.gray10
-                        } else {
-                            Color.Transparent
-                        },
-                    ),
-            )
+            if (selectedTab == 1) {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .height(2.dp)
+                        .background(DaisoTheme.colors.gray10),
+                )
+            }
         }
     }
 }
@@ -122,13 +117,9 @@ fun TabGroup(
 @Preview(showBackground = true)
 @Composable
 private fun TabGroupPreview() {
-    var selectedTab by rememberSaveable {
-        mutableIntStateOf(0)
-    }
-
     DaisoMallTheme {
         TabGroup(
-            selectedTab = selectedTab,
+            selectedTab = 0,
         )
     }
 }
