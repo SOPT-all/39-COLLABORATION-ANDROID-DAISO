@@ -49,7 +49,7 @@ fun CardimgProduct(
                 .heightIn(min = 16.dp)
                 .background(color = DaisoTheme.colors.gray8),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(space = 3.dp, alignment = Alignment.CenterHorizontally,            ),
+            horizontalArrangement = Arrangement.spacedBy(space = 3.dp, alignment = Alignment.CenterHorizontally,),
         ) {
             customStatusIcon(
                 isOpen = isOpen,
