@@ -1,8 +1,5 @@
 package com.sopt.daisomall.core.designsystem.component.button
 
-import android.R.attr.onClick
-import android.R.attr.text
-import android.R.attr.textStyle
 import androidx.compose.ui.graphics.Color
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
