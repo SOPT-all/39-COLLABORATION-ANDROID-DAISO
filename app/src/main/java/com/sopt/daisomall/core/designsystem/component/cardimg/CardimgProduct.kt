@@ -1,13 +1,13 @@
-package com.sopt.daisomall.core.designsystem.component
+package com.sopt.daisomall.core.designsystem.component.cardimg
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.core.designsystem.component.image.UrlImage
@@ -26,10 +25,10 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.R
 
 @Composable
-fun cardimgProduct(
-    isOpen: Boolean,
-    imageUrl: String,
-    modifier: Modifier = Modifier,
+fun CardimgProduct(
+        isOpen: Boolean,
+        imageUrl: String,
+        modifier: Modifier = Modifier,
     ) {
     Box(
         modifier = modifier.size(
@@ -46,8 +45,8 @@ fun cardimgProduct(
         Row(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .width(82.dp)
-                .height(16.dp)
+                .widthIn(min = 82.dp)
+                .heightIn(min = 16.dp)
                 .background(color = DaisoTheme.colors.gray8),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(space = 3.dp, alignment = Alignment.CenterHorizontally,            ),
@@ -61,7 +60,6 @@ fun cardimgProduct(
                 text = if (isOpen) "영업중" else "영업종료",
                 style = DaisoTheme.typography.caption.b10,
                 color = DaisoTheme.colors.white,
-                fontWeight = FontWeight.Bold
             )
         }
     }
@@ -80,16 +78,16 @@ private fun customStatusIcon(
 
     Icon(
         imageVector = ImageVector.vectorResource(id = iconRes),
-        contentDescription = if (isOpen) "영업중" else "영업종료",
+        contentDescription = null,
         tint = Color.Unspecified,
     )
 }
 
 @Preview(name = "영업중")
 @Composable
-private fun cardImgProductOpenPreview() {
+private fun CardImgProductOpenPreview() {
     DaisoMallTheme {
-        cardimgProduct(
+        CardimgProduct(
             imageUrl = "",
             isOpen = true,
         )
@@ -98,9 +96,9 @@ private fun cardImgProductOpenPreview() {
 
 @Preview(name = "영업종료")
 @Composable
-private fun cardImgProductClosePreview() {
+private fun CardImgProductClosePreview() {
     DaisoMallTheme {
-        cardimgProduct(
+        CardimgProduct(
             imageUrl = "",
             isOpen = false,
         )
