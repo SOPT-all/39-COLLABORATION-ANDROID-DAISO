@@ -1,14 +1,11 @@
 package com.sopt.daisomall.presentation.stockcheck.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,10 +21,10 @@ import com.sopt.daisomall.core.common.extensions.noRippleClickable
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
-fun DaisoTopBar(
+fun TitleTopBar(
     title: String,
     onBackClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
@@ -59,12 +56,11 @@ fun DaisoTopBar(
 @Composable
 private fun DaisoTopBarPreview() {
     DaisoMallTheme {
-        DaisoTopBar(
+        TitleTopBar(
             title = "매장재고 조회",
             onBackClick = {},
             modifier = Modifier
-                .width(375.dp)
-                .height(44.dp)
+                .size(375.dp, 44.dp)
         )
     }
 }
