@@ -31,6 +31,7 @@ enum class ButtonType {
     BLACK_LINE,
     GRAY_LINE
 }
+
 @Composable
 fun DaisoButton(
     type: ButtonType,
@@ -41,19 +42,23 @@ fun DaisoButton(
     textStyle: TextStyle = DaisoTheme.typography.body.m12,
 ) {
     val backgroundColor = when (type) {
-        ButtonType.RED_LINE, ButtonType.BLACK_LINE, ButtonType.GRAY_LINE -> DaisoTheme.colors.white
+        ButtonType.RED_LINE -> DaisoTheme.colors.white
         ButtonType.RED_FILLED -> DaisoTheme.colors.primaryRed
         ButtonType.DISABLED -> DaisoTheme.colors.gray2
+        ButtonType.BLACK_LINE -> DaisoTheme.colors.white
+        ButtonType.GRAY_LINE -> DaisoTheme.colors.white
     }
     val contentColor = when (type) {
         ButtonType.RED_LINE -> DaisoTheme.colors.primaryRed
         ButtonType.RED_FILLED -> DaisoTheme.colors.white
         ButtonType.DISABLED -> DaisoTheme.colors.gray5
-        ButtonType.BLACK_LINE, ButtonType.GRAY_LINE -> DaisoTheme.colors.gray9
+        ButtonType.BLACK_LINE -> DaisoTheme.colors.gray9
+        ButtonType.GRAY_LINE -> DaisoTheme.colors.gray9
     }
     val borderColor = when (type) {
-        ButtonType.RED_FILLED, ButtonType.DISABLED -> null
+        ButtonType.RED_FILLED -> null
         ButtonType.RED_LINE -> DaisoTheme.colors.primaryRed
+        ButtonType.DISABLED -> null
         ButtonType.BLACK_LINE -> DaisoTheme.colors.black
         ButtonType.GRAY_LINE -> DaisoTheme.colors.gray2
     }
@@ -61,6 +66,7 @@ fun DaisoButton(
         ButtonType.DISABLED -> false
         else -> true
     }
+
     Row(
         modifier = modifier
             .run {
