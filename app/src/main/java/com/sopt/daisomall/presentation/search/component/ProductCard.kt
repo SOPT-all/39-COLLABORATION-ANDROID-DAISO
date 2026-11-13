@@ -25,15 +25,13 @@ import com.sopt.daisomall.core.designsystem.component.tag.DaisoNewTag
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
-private const val MAX_REVIEW_COUNT = 9999
-
 @Composable
 fun ProductCard(
     productNumber: String,
     productName: String,
     price: Int,
     imageUrl: String,
-    reviewCount: Int,
+    reviewCount: String,
     isLiked: Boolean,
     onLikeClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -110,7 +108,7 @@ fun ProductCard(
                 )
 
                 Text(
-                    text = reviewCount.toReviewCountText(),
+                    text = reviewCount,
                     style = DaisoTheme.typography.caption.r10,
                     color = DaisoTheme.colors.gray10,
                 )
@@ -123,10 +121,6 @@ fun ProductCard(
     }
 }
 
-private fun Int.toReviewCountText(): String =
-    if (this > MAX_REVIEW_COUNT) "%,d+".format(MAX_REVIEW_COUNT)
-    else "%,d".format(this)
-
 @Preview(showBackground = true)
 @Composable
 private fun ProductCardPreview() {
@@ -137,7 +131,7 @@ private fun ProductCardPreview() {
                 productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
                 price = 1000,
                 imageUrl = "",
-                reviewCount = 12000,
+                reviewCount = "9,999+",
                 isLiked = false,
                 onLikeClick = {},
                 modifier = Modifier.padding(20.dp),
@@ -148,7 +142,7 @@ private fun ProductCardPreview() {
                 productName = "VT PDRN 톤온 젤리 시트 마스크 1매입",
                 price = 1000,
                 imageUrl = "",
-                reviewCount = 1200,
+                reviewCount = "1200",
                 isLiked = true,
                 onLikeClick = {},
                 modifier = Modifier.padding(20.dp),
