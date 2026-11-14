@@ -30,7 +30,7 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 fun ProductCard(
     productNumber: String,
     productName: String,
-    price: Int,
+    price: String,
     imageUrl: String,
     reviewCount: String,
     isLiked: Boolean,
@@ -64,7 +64,7 @@ fun ProductCard(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "%,d".format(price),
+                        text = price,
                         style = DaisoTheme.typography.title.b18,
                         color = DaisoTheme.colors.gray10,
                     )
@@ -140,7 +140,7 @@ private fun ProductCardPreview() {
             ProductCard(
                 productNumber = "1075034",
                 productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                price = 1000,
+                price = "1,000",
                 imageUrl = "",
                 reviewCount = "9,999+",
                 isLiked = false,
@@ -151,7 +151,7 @@ private fun ProductCardPreview() {
             ProductCard(
                 productNumber = "1075034",
                 productName = "VT PDRN 톤온 젤리 시트 마스크 1매입",
-                price = 1000,
+                price = "1,000",
                 imageUrl = "",
                 reviewCount = "1200",
                 isLiked = true,
