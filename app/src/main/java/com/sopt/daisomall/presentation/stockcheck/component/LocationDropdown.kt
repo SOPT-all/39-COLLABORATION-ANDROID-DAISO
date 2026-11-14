@@ -3,9 +3,7 @@ package com.sopt.daisomall.presentation.stockcheck.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -32,8 +30,7 @@ fun LocationDropdown(
         modifier = modifier
             .border(1.dp, color = DaisoTheme.colors.gray3, shape = shape)
             .background(color = DaisoTheme.colors.white, shape = shape)
-            .padding(horizontal = 11.dp, vertical = 7.dp)
-            .height(IntrinsicSize.Min),
+            .padding(horizontal = 11.dp, vertical = 7.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(3.dp),
     ) {
@@ -46,7 +43,7 @@ fun LocationDropdown(
         Text(
             text = "5km",
             style = DaisoTheme.typography.body.m14,
-            color = DaisoTheme.colors.gray7,
+            color = DaisoTheme.colors.gray6,
         )
 
         Icon(
