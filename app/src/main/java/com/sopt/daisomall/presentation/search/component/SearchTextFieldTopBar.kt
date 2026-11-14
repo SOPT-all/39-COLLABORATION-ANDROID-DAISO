@@ -25,7 +25,6 @@ fun SearchTextFieldTopBar(
     onBackClick: () -> Unit,
     onSearch: () -> Unit,
     modifier: Modifier = Modifier,
-    placeholder: String = "상품, 품번, 브랜드 검색",
 ) {
     Row(
         modifier = modifier
@@ -44,7 +43,7 @@ fun SearchTextFieldTopBar(
 
         DaisoToggleTextField(
             state = state,
-            placeholder = placeholder,
+            placeholder = "상품, 품번, 브랜드 검색",
             modifier = Modifier.weight(1f),
             onSearch = onSearch,
         )
