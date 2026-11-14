@@ -1,4 +1,4 @@
-package com.sopt.daisomall.core.designsystem.component.cardimg
+package com.sopt.daisomall.presentation.stockcheck.component.cardimg
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -6,10 +6,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,9 +26,9 @@ import com.sopt.daisomall.R
 
 @Composable
 fun CardimgProduct(
-        isOpen: Boolean,
-        imageUrl: String,
-        modifier: Modifier = Modifier,
+    isOpen: Boolean,
+    imageUrl: String,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.sizeIn(
@@ -52,7 +50,7 @@ fun CardimgProduct(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(space = 3.dp, alignment = Alignment.CenterHorizontally,),
         ) {
-            customStatusIcon(
+            CustomStatusIcon(
                 isOpen = isOpen,
                 modifier = Modifier.size(6.dp),
             )
@@ -61,7 +59,7 @@ fun CardimgProduct(
 }
 
 @Composable
-private fun customStatusIcon(
+private fun CustomStatusIcon(
     isOpen: Boolean,
     modifier: Modifier = Modifier,
 ) {
