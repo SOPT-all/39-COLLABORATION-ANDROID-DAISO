@@ -21,6 +21,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.R
+import com.sopt.daisomall.core.designsystem.component.button.ButtonType
+import com.sopt.daisomall.core.designsystem.component.button.DaisoButton
 import com.sopt.daisomall.core.designsystem.component.image.DaisoProductImage
 import com.sopt.daisomall.core.designsystem.component.tag.DaisoNewTag
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
@@ -35,6 +37,7 @@ fun ProductCard(
     reviewCount: String,
     isLiked: Boolean,
     onLikeClick: () -> Unit,
+    onFindClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -126,7 +129,13 @@ fun ProductCard(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // TODO: 구매가능 매장찾기 버튼 컴포넌트 머지 후 추가
+            DaisoButton(
+                type = ButtonType.GRAY_LINE,
+                text = "구매가능 매장찾기",
+                onClick = onFindClick,
+                icon = R.drawable.ic_availablestores_20,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
@@ -144,6 +153,7 @@ private fun ProductCardPreview() {
                 reviewCount = "9,999+",
                 isLiked = false,
                 onLikeClick = {},
+                onFindClick = {},
                 modifier = Modifier.padding(20.dp),
             )
 
@@ -155,6 +165,7 @@ private fun ProductCardPreview() {
                 reviewCount = "1200",
                 isLiked = true,
                 onLikeClick = {},
+                onFindClick = {},
                 modifier = Modifier.padding(20.dp),
             )
         }
