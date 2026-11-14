@@ -28,6 +28,7 @@ fun TopBarChip(
             .padding(horizontal = 10.dp, vertical = 8.dp),
         color = if (isSelected) DaisoTheme.colors.white else DaisoTheme.colors.gray10,
         style = DaisoTheme.typography.body.m14,
+        maxLines = 1,
     )
 }
 
