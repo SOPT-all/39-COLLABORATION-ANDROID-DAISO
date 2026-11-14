@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -90,11 +91,21 @@ fun ProductCard(
 
             Spacer(modifier = Modifier.height(2.dp))
 
-            Text(
-                text = "품번 $productNumber",
-                style = DaisoTheme.typography.caption.m10,
-                color = DaisoTheme.colors.gray5,
-            )
+            Row {
+                Text(
+                    text = "품번",
+                    style = DaisoTheme.typography.caption.m10,
+                    color = DaisoTheme.colors.gray5,
+                )
+
+                Spacer(modifier = Modifier.width(2.dp))
+
+                Text(
+                    text = productNumber,
+                    style = DaisoTheme.typography.caption.m10,
+                    color = DaisoTheme.colors.gray5,
+                )
+            }
 
             Spacer(modifier = Modifier.height(6.dp))
 
