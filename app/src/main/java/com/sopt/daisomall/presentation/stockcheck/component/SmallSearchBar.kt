@@ -24,7 +24,6 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 @Composable
 fun SmallSearchBar(
     modifier: Modifier = Modifier,
-    placeholder: String = "매장, 지역 검색",
 ) {
     val shape = RoundedCornerShape(2.dp)
 
@@ -37,7 +36,7 @@ fun SmallSearchBar(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = placeholder,
+            text = "매장, 지역 검색",
             modifier = Modifier.weight(1f),
             color = DaisoTheme.colors.gray4,
             style = DaisoTheme.typography.body.m14,
