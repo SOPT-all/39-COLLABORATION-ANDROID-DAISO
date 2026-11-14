@@ -54,13 +54,12 @@ fun TitleTopBar(
 
 @Preview
 @Composable
-private fun DaisoTopBarPreview() {
+private fun TitleTopBarPreview() {
     DaisoMallTheme {
         TitleTopBar(
             title = "매장재고 조회",
             onBackClick = {},
-            modifier = Modifier
-                .size(375.dp, 44.dp)
+            modifier = Modifier.size(375.dp, 44.dp)
         )
     }
 }
