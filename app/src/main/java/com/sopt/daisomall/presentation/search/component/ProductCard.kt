@@ -117,7 +117,7 @@ fun ProductCard(
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_stars_60),
                     contentDescription = null,
-                    tint = Color.Unspecified,
+                    tint = DaisoTheme.colors.gray10,
                 )
 
                 Text(
