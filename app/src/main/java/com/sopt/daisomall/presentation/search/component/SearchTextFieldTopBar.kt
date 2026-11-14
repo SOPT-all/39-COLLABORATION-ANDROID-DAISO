@@ -18,6 +18,7 @@ import com.sopt.daisomall.R
 import com.sopt.daisomall.core.common.extensions.noRippleClickable
 import com.sopt.daisomall.core.designsystem.component.textfield.DaisoToggleTextField
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
+import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
 fun SearchTextFieldTopBar(
@@ -38,7 +39,7 @@ fun SearchTextFieldTopBar(
             modifier = Modifier
                 .noRippleClickable(onClick = onBackClick)
                 .padding(10.dp),
-            tint = Color.Unspecified,
+            tint = DaisoTheme.colors.black,
         )
 
         DaisoToggleTextField(
