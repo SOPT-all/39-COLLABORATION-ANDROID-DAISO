@@ -31,7 +31,7 @@ fun CardimgProduct(
         isOpen: Boolean,
         imageUrl: String,
         modifier: Modifier = Modifier,
-    ) {
+) {
     Box(
         modifier = modifier.sizeIn(
             minWidth = 82.dp,
@@ -58,12 +58,6 @@ fun CardimgProduct(
                 isOpen = isOpen,
                 modifier = Modifier.size(6.dp),
             )
-
-            Text(
-                text = if (isOpen) "영업중" else "영업종료",
-                style = DaisoTheme.typography.caption.b10,
-                color = DaisoTheme.colors.white,
-            )
         }
     }
 }
@@ -84,6 +78,12 @@ private fun customStatusIcon(
         imageVector = ImageVector.vectorResource(id = iconRes),
         contentDescription = null,
         tint = Color.Unspecified,
+    )
+
+    Text(
+        text = if (isOpen) "영업중" else "영업종료",
+        style = DaisoTheme.typography.caption.b10,
+        color = DaisoTheme.colors.white,
     )
 }
 
