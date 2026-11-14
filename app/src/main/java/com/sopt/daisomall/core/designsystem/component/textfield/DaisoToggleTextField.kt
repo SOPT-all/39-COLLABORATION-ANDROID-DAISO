@@ -34,7 +34,6 @@ fun DaisoToggleTextField(
     placeholder: String,
     onSearch: () -> Unit,
     modifier: Modifier = Modifier,
-    keyboardOptions: KeyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
 ) {
     Row(
         modifier = modifier
@@ -59,7 +58,7 @@ fun DaisoToggleTextField(
             placeholderColor = DaisoTheme.colors.gray4,
             placeholderStyle = DaisoTheme.typography.body.m14,
             modifier = Modifier.weight(1f),
-            keyboardOptions = keyboardOptions,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
             onKeyboardAction = { onSearch() },
             lineLimits = TextFieldLineLimits.SingleLine,
             suffix = {
