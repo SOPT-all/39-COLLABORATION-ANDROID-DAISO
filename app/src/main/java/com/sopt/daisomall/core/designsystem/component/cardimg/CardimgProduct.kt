@@ -48,8 +48,6 @@ fun CardimgProduct(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .widthIn(min = 82.dp)
-                .heightIn(min = 16.dp)
                 .background(color = DaisoTheme.colors.gray8),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(space = 3.dp, alignment = Alignment.CenterHorizontally,),
