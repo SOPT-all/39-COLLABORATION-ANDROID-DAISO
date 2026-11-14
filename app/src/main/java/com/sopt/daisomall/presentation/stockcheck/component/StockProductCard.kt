@@ -1,9 +1,12 @@
 package com.sopt.daisomall.presentation.stockcheck.component
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -12,9 +15,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.daisomall.R
+import com.sopt.daisomall.core.designsystem.component.button.ButtonType
+import com.sopt.daisomall.core.designsystem.component.button.DaisoButton
 import com.sopt.daisomall.core.designsystem.component.image.UrlImage
 import com.sopt.daisomall.core.designsystem.component.tag.DaisoShippingTag
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
@@ -28,10 +35,16 @@ fun StockProductCard(
     productCode: Int,
     modifier: Modifier = Modifier,
 ) {
-    Row( modifier = modifier.padding(all = 10.dp), ) {
+    Row(
+        modifier = modifier
+            .background(color = DaisoTheme.colors.white)
+            .border(width = 1.dp, color = DaisoTheme.colors.gray2)
+            .padding(all = 11.dp),
+    ) {
         UrlImage(
             url = imageUrl,
             modifier = Modifier.size(width = 82.dp, height = 111.dp),
+            contentScale = ContentScale.Crop,
         )
 
         Spacer(modifier = Modifier.width(10.dp))
@@ -40,7 +53,7 @@ fun StockProductCard(
             title = title,
             price = price,
             productCode = productCode,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }
@@ -82,7 +95,7 @@ private fun ProductInfo(
 
             Row {
                 Text(
-                    text = productCode.toString(),
+                    text = "품번",
                     color = DaisoTheme.colors.gray5,
                     style = DaisoTheme.typography.caption.m10,
                 )
@@ -90,7 +103,7 @@ private fun ProductInfo(
                 Spacer(modifier = Modifier.width(2.dp))
 
                 Text(
-                    text = "품번",
+                    text = productCode.toString(),
                     color = DaisoTheme.colors.gray5,
                     style = DaisoTheme.typography.caption.m10,
                 )
@@ -105,9 +118,15 @@ private fun ProductInfo(
             }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(6.dp))
 
-        //버튼
+        DaisoButton(
+            type = ButtonType.RED_LINE,
+            text = "온라인 구매",
+            icon = R.drawable.ic_shoppingbag_small_20,
+            onClick = {},
+            modifier = Modifier.fillMaxWidth(),
+        )
     }
 }
 
@@ -120,7 +139,9 @@ private fun StockProductCardPreview() {
             title = "[화잘먹/80매]마미케어 바다포도 스킨팩",
             price = "5,000",
             productCode = 1075034,
-            modifier = Modifier.width(336.dp),
+            modifier = Modifier
+                .padding(20.dp)
+                .width(336.dp),
         )
     }
 }
@@ -134,7 +155,9 @@ private fun StockProductCardTwoLinePreview() {
             title = "[화잘먹/80매]마미케어 바다포도 스킨팩 대용량 기획세트 수분 진정 시트 마스크",
             price = "5,000",
             productCode = 1075034,
-            modifier = Modifier.width(336.dp),
+            modifier = Modifier
+                .padding(20.dp)
+                .width(336.dp),
         )
     }
 }
@@ -148,7 +171,9 @@ private fun StockProductCardEllipsisPreview() {
             title = "[화잘먹/80매]마미케어 바다포도 스킨팩 대용량 기획세트 수분 진정 시트 마스크 촉촉 보습 데일리 케어 피부결 정돈 1+1 한정 특가 구성",
             price = "5,000",
             productCode = 1075034,
-            modifier = Modifier.width(336.dp),
+            modifier = Modifier
+                .padding(20.dp)
+                .width(336.dp),
         )
     }
 }
