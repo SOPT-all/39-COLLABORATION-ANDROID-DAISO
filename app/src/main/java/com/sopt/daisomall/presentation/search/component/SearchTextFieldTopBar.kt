@@ -20,7 +20,7 @@ import com.sopt.daisomall.core.designsystem.component.textfield.DaisoToggleTextF
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 
 @Composable
-fun TextFieldTopBar(
+fun SearchTextFieldTopBar(
     state: TextFieldState,
     onBackClick: () -> Unit,
     onSearch: () -> Unit,
@@ -53,9 +53,9 @@ fun TextFieldTopBar(
 
 @Preview(showBackground = true)
 @Composable
-private fun TextFieldTopBarPreview() {
+private fun SearchTextFieldTopBarPreview() {
     DaisoMallTheme {
-        TextFieldTopBar(
+        SearchTextFieldTopBar(
             state = rememberTextFieldState(initialText = "마스크팩"),
             onBackClick = {},
             onSearch = {},
