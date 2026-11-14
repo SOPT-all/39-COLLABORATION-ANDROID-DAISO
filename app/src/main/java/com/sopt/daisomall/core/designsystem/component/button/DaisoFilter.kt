@@ -22,7 +22,7 @@ fun DaisoFilter( modifier: Modifier = Modifier, ) {
         contentDescription = null,
         modifier = modifier
             .background(color = DaisoTheme.colors.white, shape = CircleShape)
-            .border(1.dp, color = DaisoTheme.colors.gray1, shape = CircleShape)
+            .border(1.dp, color = DaisoTheme.colors.gray2, shape = CircleShape)
             .padding(7.dp),
         tint = DaisoTheme.colors.gray9,
     )

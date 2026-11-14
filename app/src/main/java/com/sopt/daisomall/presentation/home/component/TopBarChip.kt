@@ -3,7 +3,7 @@ package com.sopt.daisomall.presentation.home.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,7 +23,7 @@ fun TopBarChip(
         modifier = modifier
             .background(
                 color = if (isSelected) DaisoTheme.colors.black else DaisoTheme.colors.white,
-                shape = RoundedCornerShape(18.dp),
+                shape = CircleShape,
             )
             .padding(horizontal = 10.dp, vertical = 8.dp),
         color = if (isSelected) DaisoTheme.colors.white else DaisoTheme.colors.gray10,
