@@ -1,4 +1,4 @@
-package com.sopt.daisomall.presentation.stockcheck.component.cardimg
+package com.sopt.daisomall.presentation.stockcheck.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
