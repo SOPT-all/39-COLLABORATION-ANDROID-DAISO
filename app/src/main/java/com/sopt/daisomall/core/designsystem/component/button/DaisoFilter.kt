@@ -16,7 +16,9 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
-fun DaisoFilter( modifier: Modifier = Modifier, ) {
+fun DaisoFilter(
+    modifier: Modifier = Modifier,
+) {
     Icon(
         imageVector = ImageVector.vectorResource(R.drawable.ic_filter_20),
         contentDescription = null,
