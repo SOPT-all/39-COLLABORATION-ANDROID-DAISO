@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,17 +24,17 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
-fun MainbannerCard(
+fun MainBannerCard(
     @DrawableRes image: Int,
     titleText: String,
     descriptionText: String,
-    modifier: Modifier= Modifier,
+    modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier.size(334.dp),
+        modifier = modifier.aspectRatio(1f),
     ) {
         Image(
-            painterResource(id=image),
+            painter = painterResource(id=image),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
