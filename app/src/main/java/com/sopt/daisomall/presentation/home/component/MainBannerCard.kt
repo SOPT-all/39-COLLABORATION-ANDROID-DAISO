@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -65,9 +64,9 @@ fun MainBannerCard(
 
 @Preview
 @Composable
-private fun MainbannerCardPreview() {
+private fun MainBannerCardPreview() {
     DaisoMallTheme {
-        MainbannerCard(
+        MainBannerCard(
             image = R.drawable.img_bigbanner1,
             titleText = "10월 4주차\n다이소 신상",
             descriptionText = "이번주 핫한 신상품을 소개합니다"
