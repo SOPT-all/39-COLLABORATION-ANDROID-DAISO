@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,14 +29,14 @@ fun LocationDropdown(
         modifier = modifier
             .border(1.dp, color = DaisoTheme.colors.gray3, shape = shape)
             .background(color = DaisoTheme.colors.white, shape = shape)
-            .padding(horizontal = 11.dp, vertical = 7.dp),
+            .padding(horizontal = 13.dp, vertical = 9.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(3.dp),
     ) {
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_location_24),
             contentDescription = null,
-            tint = Color.Unspecified,
+            tint = DaisoTheme.colors.gray6,
         )
 
         Text(
@@ -49,7 +48,7 @@ fun LocationDropdown(
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_arrow_down_24),
             contentDescription = null,
-            tint = Color.Unspecified,
+            tint =  DaisoTheme.colors.gray6,
         )
     }
 }
