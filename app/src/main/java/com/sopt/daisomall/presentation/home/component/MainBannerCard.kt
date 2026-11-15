@@ -36,7 +36,7 @@ fun MainBannerCard(
             painter = painterResource(id=image),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
 
         Column(
@@ -48,7 +48,7 @@ fun MainBannerCard(
             Text(
                 text = titleText,
                 style = DaisoTheme.typography.title.b24,
-                color = DaisoTheme.colors.white
+                color = DaisoTheme.colors.white,
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -56,7 +56,7 @@ fun MainBannerCard(
             Text(
                 text = descriptionText,
                 style = DaisoTheme.typography.body.m16,
-                color = DaisoTheme.colors.white
+                color = DaisoTheme.colors.white,
             )
         }
     }
