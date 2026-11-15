@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.R
@@ -36,8 +37,7 @@ fun HomeRecommendCard(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier
-            .width(IntrinsicSize.Min),
+        modifier = modifier.width(109.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         DaisoProductImage(
@@ -53,13 +53,11 @@ fun HomeRecommendCard(
             text = "담기",
             onClick = {},
             icon = R.drawable.ic_availablestores_20,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+
         )
 
         Row(
-            modifier= Modifier,
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -78,22 +76,20 @@ fun HomeRecommendCard(
             text = productName,
             style = DaisoTheme.typography.body.m12,
             color = DaisoTheme.colors.gray10,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
         )
 
-        DaisoShippingTag(
-            text = "택배",
-        )
+        DaisoShippingTag(text = "택배",)
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            repeat(5) {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_star_12),
-                    contentDescription = null,
-                    tint = DaisoTheme.colors.gray10
+            Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.ic_stars_60),
+                contentDescription = null,
+                tint = DaisoTheme.colors.gray10,
                 )
-            }
 
             Text(
                 text = reviewCount,
@@ -109,7 +105,55 @@ fun HomeRecommendCard(
 private fun HomeRecommendCardPreview() {
     DaisoMallTheme { 
         HomeRecommendCard(
-            productName = "[화잘먹/80매]마미케어\n바다포도 스킨팩",
+            productName = "[화잘먹/80매]마미케어 바다포도 스킨팩",
+            productPrice = "5000",
+            imageUrl = "",
+            reviewCount = "70",
+            isLiked = false,
+            isNew = true,
+            onLikeClick = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun HomeRecommendCardNotNewPreview() {
+    DaisoMallTheme {
+        HomeRecommendCard(
+            productName = "[01라이트]본셉 비타씨에센스비비 30ml",
+            productPrice = "5000",
+            imageUrl = "",
+            reviewCount = "70",
+            isLiked = false,
+            isNew = true,
+            onLikeClick = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun HomeRecommendCardOneLinePreview() {
+    DaisoMallTheme {
+        HomeRecommendCard(
+            productName = "[화잘먹/80매]마미케어",
+            productPrice = "5000",
+            imageUrl = "",
+            reviewCount = "70",
+            isLiked = false,
+            isNew = true,
+            onLikeClick = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun HomeRecommendCardPreviewOverFlow() {
+    DaisoMallTheme {
+        HomeRecommendCard(
+            productName = "[화잘먹/80매]마미케어 바다포도 스킨팩 마미케어 바다포도 스킨팩",
             productPrice = "5000",
             imageUrl = "",
             reviewCount = "70",
