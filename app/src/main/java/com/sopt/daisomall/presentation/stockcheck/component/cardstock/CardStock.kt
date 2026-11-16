@@ -1,4 +1,4 @@
-package com.sopt.daisomall.presentation.stockcheck.component
+package com.sopt.daisomall.presentation.stockcheck.component.cardstock
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth

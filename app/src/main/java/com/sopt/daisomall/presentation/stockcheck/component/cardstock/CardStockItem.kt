@@ -1,4 +1,4 @@
-package com.sopt.daisomall.presentation.stockcheck.component
+package com.sopt.daisomall.presentation.stockcheck.component.cardstock
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +25,8 @@ import com.sopt.daisomall.core.designsystem.component.button.ButtonType
 import com.sopt.daisomall.core.designsystem.component.button.DaisoButton
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
+import com.sopt.daisomall.presentation.stockcheck.component.CardimgProduct
+import com.sopt.daisomall.presentation.stockcheck.component.LocationTag
 
 enum class StockStatus {
     PICKUP_AVAILABLE, // 매장픽업
