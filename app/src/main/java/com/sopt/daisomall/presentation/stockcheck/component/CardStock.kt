@@ -18,6 +18,9 @@ data class StockStore(
     val floor: String,
     val number: String,
     val stockStatus: StockStatus,
+    val imageUrl : String,
+    val isOpen : Boolean,
+    val isFavoriteStore : Boolean,
 )
 
 @Composable
@@ -41,12 +44,15 @@ fun CardStock(
                 floor = item.floor,
                 number = item.number,
                 stockStatus = item.stockStatus,
+                imageUrl = item.imageUrl,
+                isOpen = item.isOpen,
+                isFavoriteStore = item.isFavoriteStore,
             )
         }
     }
 }
 
-@Preview(showBackground = true, widthDp = 247, heightDp = 380)
+@Preview(showBackground = true, widthDp = 335, heightDp = 380)
 @Composable
 private fun CardStockPreview() {
     val newStores = listOf(
@@ -54,19 +60,25 @@ private fun CardStockPreview() {
             id = 1,
             store = "구로디지털단지역점",
             distanceMeters = 300,
-            stockCount = 46,
+            stockCount = 56,
             floor = "2F",
             number = "2번",
+            imageUrl = "",
+            isOpen = true,
             stockStatus = StockStatus.PICKUP_AVAILABLE,
+            isFavoriteStore = true,
         ),
         StockStore(
             id = 2,
             store = "모앱1조최고지역점",
             distanceMeters = 500,
-            stockCount = 12,
+            stockCount = 56,
             floor = "1F",
             number = "3번",
+            imageUrl = "",
+            isOpen = false,
             stockStatus = StockStatus.PICKUP_CLOSED,
+            isFavoriteStore = false,
         ),
         StockStore(
             id = 3,
@@ -75,7 +87,10 @@ private fun CardStockPreview() {
             stockCount = 0,
             floor = "",
             number = "",
+            imageUrl = "",
+            isOpen = false,
             stockStatus = StockStatus.OUT_OF_STOCK,
+            isFavoriteStore = false,
         ),
     )
 

@@ -1,11 +1,13 @@
 package com.sopt.daisomall.presentation.stockcheck.component
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -13,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,6 +40,9 @@ fun CardStockItem(
     floor: String,
     number: String,
     stockStatus: StockStatus,
+    imageUrl: String,
+    isOpen : Boolean,
+    isFavoriteStore : Boolean,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -44,10 +50,13 @@ fun CardStockItem(
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .height(110.dp),
+        horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        // CardImg 코드 머지 되면 넣기
-
-        Spacer(modifier = Modifier.height(6.dp))
+        CardimgProduct(
+            imageUrl = imageUrl,
+            isOpen = isOpen,
+            modifier = Modifier.size(width = 82.dp, height = 110.dp),
+        )
 
         Column(
             modifier = modifier
@@ -78,9 +87,14 @@ fun CardStockItem(
                 Spacer(modifier = Modifier.weight(1f))
 
                 Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_bookmark_pressed_24),
+                    imageVector =
+                        if (isFavoriteStore == true) {
+                        ImageVector.vectorResource(R.drawable.ic_bookmark_pressed_24)
+                    } else {
+                        ImageVector.vectorResource(R.drawable.ic_bookmark_default_24)
+                    },
                     contentDescription = null,
-                    tint = DaisoTheme.colors.primaryRed
+                    tint = Color.Unspecified,
                 )
             }
             Text(
@@ -134,39 +148,45 @@ fun CardStockItem(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 335)
 @Composable
 private fun CardStockItemAvailablePreview() {
     DaisoMallTheme {
         CardStockItem(
             store = "구로디지털단지지역점",
             distanceMeters= 300,
-            stockCount = 46,
+            stockCount = 56,
             floor = "2F",
             number = "2번",
             stockStatus = StockStatus.PICKUP_AVAILABLE,
+            isOpen = true,
+            imageUrl = "",
+            isFavoriteStore = true,
             modifier = Modifier.width(247.dp),
         )
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 335)
 @Composable
 private fun CardStockItemClosePreview() {
     DaisoMallTheme {
         CardStockItem(
             store = "구로디지털단지지역점",
             distanceMeters= 300,
-            stockCount = 46,
+            stockCount = 56,
             floor = "2F",
             number = "2번",
             stockStatus = StockStatus.PICKUP_CLOSED,
+            isOpen = false,
+            imageUrl = "",
+            isFavoriteStore = false,
             modifier = Modifier.width(247.dp),
         )
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 335)
 @Composable
 private fun CardStockItemOutPreview() {
     DaisoMallTheme {
@@ -177,6 +197,9 @@ private fun CardStockItemOutPreview() {
             floor = "2F",
             number = "2번",
             stockStatus = StockStatus.OUT_OF_STOCK,
+            isOpen = false,
+            imageUrl = "",
+            isFavoriteStore = false,
             modifier = Modifier.width(247.dp),
         )
     }
