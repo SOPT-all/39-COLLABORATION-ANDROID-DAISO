@@ -3,8 +3,10 @@ package com.sopt.daisomall.presentation.stockcheck.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -35,6 +37,7 @@ fun StockProductCard(
 ) {
     Row(
         modifier = modifier
+            .height(IntrinsicSize.Min)
             .background(color = DaisoTheme.colors.white)
             .border(width = 1.dp, color = DaisoTheme.colors.gray1)
             .padding(all = 11.dp),
@@ -51,7 +54,9 @@ fun StockProductCard(
             title = title,
             price = price,
             productCode = productCode,
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
         )
     }
 }
@@ -64,9 +69,9 @@ private fun ProductInfo(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
+        Row (
+            verticalAlignment = Alignment.CenterVertically
+        ){
             Text(
                 text = price,
                 color = DaisoTheme.colors.gray10,
@@ -108,7 +113,7 @@ private fun ProductInfo(
             )
         }
 
-        Spacer(modifier = Modifier.height(6.dp))
+        Spacer(modifier = Modifier.weight(1f))
 
         DaisoButton(
             type = ButtonType.RED_LINE,
