@@ -2,7 +2,6 @@ package com.sopt.daisomall.presentation.stockcheck.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,7 +22,6 @@ import com.sopt.daisomall.R
 import com.sopt.daisomall.core.designsystem.component.button.ButtonType
 import com.sopt.daisomall.core.designsystem.component.button.DaisoButton
 import com.sopt.daisomall.core.designsystem.component.image.UrlImage
-import com.sopt.daisomall.core.designsystem.component.tag.DaisoShippingTag
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
@@ -38,7 +36,7 @@ fun StockProductCard(
     Row(
         modifier = modifier
             .background(color = DaisoTheme.colors.white)
-            .border(width = 1.dp, color = DaisoTheme.colors.gray2)
+            .border(width = 1.dp, color = DaisoTheme.colors.gray1)
             .padding(all = 11.dp),
     ) {
         UrlImage(
@@ -66,56 +64,48 @@ private fun ProductInfo(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    text = price,
-                    color = DaisoTheme.colors.gray10,
-                    style = DaisoTheme.typography.body.b14,
-                )
-
-                Text(
-                    text = "원",
-                    color = DaisoTheme.colors.gray10,
-                    style = DaisoTheme.typography.body.sb12,
-                )
-            }
-
             Text(
-                text = title,
+                text = price,
                 color = DaisoTheme.colors.gray10,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 2,
-                style = DaisoTheme.typography.body.m12,
+                style = DaisoTheme.typography.body.b14,
             )
 
-            Row {
-                Text(
-                    text = "품번",
-                    color = DaisoTheme.colors.gray5,
-                    style = DaisoTheme.typography.caption.m10,
-                )
+            Text(
+                text = "원",
+                color = DaisoTheme.colors.gray10,
+                style = DaisoTheme.typography.body.sb12,
+            )
+        }
 
-                Spacer(modifier = Modifier.width(2.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
-                Text(
-                    text = productCode.toString(),
-                    color = DaisoTheme.colors.gray5,
-                    style = DaisoTheme.typography.caption.m10,
-                )
-            }
+        Text(
+            text = title,
+            color = DaisoTheme.colors.gray10,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 2,
+            style = DaisoTheme.typography.body.m12,
+        )
 
-            Row {
-                DaisoShippingTag(text = "택배")
+        Spacer(modifier = Modifier.height(4.dp))
 
-                Spacer(modifier = Modifier.width(2.dp))
+        Row {
+            Text(
+                text = "품번",
+                color = DaisoTheme.colors.gray5,
+                style = DaisoTheme.typography.caption.m10,
+            )
 
-                DaisoShippingTag(text = "오늘")
-            }
+            Spacer(modifier = Modifier.width(2.dp))
+
+            Text(
+                text = productCode.toString(),
+                color = DaisoTheme.colors.gray5,
+                style = DaisoTheme.typography.caption.m10,
+            )
         }
 
         Spacer(modifier = Modifier.height(6.dp))
