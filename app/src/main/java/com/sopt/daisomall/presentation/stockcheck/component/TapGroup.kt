@@ -1,13 +1,14 @@
-
 package com.sopt.daisomall.presentation.stockcheck.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -24,14 +25,13 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
-fun TabGroup(
-    selectedTab: Int,
+fun TapGroup(
     modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(48.dp)
+            .height(IntrinsicSize.Min)
             .background(DaisoTheme.colors.white),
     ) {
         Box(
@@ -42,20 +42,13 @@ fun TabGroup(
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                horizontalArrangement = Arrangement.spacedBy(7.dp),
             ) {
                 Text(
                     text = "매장 검색",
-                    color = if (selectedTab == 0) {
-                        DaisoTheme.colors.gray10
-                    } else {
-                        DaisoTheme.colors.gray6
-                    },
-                    style = if (selectedTab == 0) {
-                        DaisoTheme.typography.body.b14
-                    } else {
-                        DaisoTheme.typography.body.m14
-                    },
+                    color = DaisoTheme.colors.gray10,
+                    style = DaisoTheme.typography.body.b14,
+                    modifier = Modifier.padding(vertical = 8.dp),
                 )
 
                 Icon(
@@ -63,20 +56,18 @@ fun TabGroup(
                         id = R.drawable.ic_pressed_number_48,
                     ),
                     contentDescription = null,
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(20.dp),
                     tint = Color.Unspecified,
                 )
             }
 
-            if (selectedTab == 0) {
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .height(2.dp)
-                        .background(DaisoTheme.colors.gray10),
-                )
-            }
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .height(2.dp)
+                    .background(DaisoTheme.colors.gray10),
+            )
         }
 
         Box(
@@ -87,27 +78,18 @@ fun TabGroup(
         ) {
             Text(
                 text = "관심 매장",
-                color = if (selectedTab == 1) {
-                    DaisoTheme.colors.gray10
-                } else {
-                    DaisoTheme.colors.gray6
-                },
-                style = if (selectedTab == 1) {
-                    DaisoTheme.typography.body.b14
-                } else {
-                    DaisoTheme.typography.body.m14
-                },
+                color = DaisoTheme.colors.gray6,
+                style = DaisoTheme.typography.body.m14,
+                modifier = Modifier.padding(vertical = 8.dp),
             )
 
-            if (selectedTab == 1) {
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .height(2.dp)
-                        .background(DaisoTheme.colors.gray10),
-                )
-            }
+            Box(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .height(2.dp)
+                    .background(DaisoTheme.colors.gray1),
+            )
         }
     }
 }
@@ -116,8 +98,6 @@ fun TabGroup(
 @Composable
 private fun TabGroupPreview() {
     DaisoMallTheme {
-        TabGroup(
-            selectedTab = 0,
-        )
+        TapGroup()
     }
 }
