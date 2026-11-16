@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -38,131 +39,146 @@ import com.sopt.daisomall.presentation.search.component.ProductCard
 import com.sopt.daisomall.presentation.search.component.SearchTextFieldTopBar
 import com.sopt.daisomall.presentation.search.model.ProductUiModel
 import com.sopt.daisomall.presentation.search.model.dummyProducts
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SearchRoute(
     modifier: Modifier = Modifier,
     viewModel: SearchViewModel = viewModel(),
 ) {
-    val products by viewModel.products.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     SearchScreen(
-        products = products,
-        modifier = modifier
+        state = state,
+        searchTextFieldState = viewModel.searchTextFieldState,
+        onSearch = viewModel::search,
+        modifier = modifier,
     )
 }
 
 @Composable
 private fun SearchScreen(
-    products: List<ProductUiModel>,
-    modifier: Modifier = Modifier
+    state: SearchContract.State,
+    searchTextFieldState: TextFieldState,
+    onSearch: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(color = DaisoTheme.colors.white),
-        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SearchTextFieldTopBar(
-            state = TextFieldState(),
+            state = searchTextFieldState,
             onBackClick = {},
-            onSearch = {},
+            onSearch = onSearch,
         )
 
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            item {
-                Spacer(modifier = Modifier.height(10.dp))
+        SearchResultList(
+            products = state.productList,
+            modifier = Modifier.weight(1f),
+        )
+    }
+}
 
-                Row(
-                    modifier = Modifier
-                        .padding(start = 20.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    DaisoFilter()
+@Composable
+private fun SearchResultList(
+    products: ImmutableList<ProductUiModel>,
+    modifier: Modifier = Modifier,
+) {
+    LazyColumn(
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        item {
+            Spacer(modifier = Modifier.height(10.dp))
 
-                    VerticalDivider(
-                        modifier = Modifier.height(15.dp),
-                        thickness = 1.dp,
-                        color = DaisoTheme.colors.gray4,
-                    )
+            Row(
+                modifier = Modifier
+                    .padding(start = 20.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                DaisoFilter()
 
-                    DaisoBasicChip(
-                        text = "NEW",
-                        textColor = DaisoTheme.colors.gray10,
-                        textStyle = DaisoTheme.typography.body.r14,
-                        backgroundColor = Color.Transparent,
-                        onClick = {},
-                        borderColor = DaisoTheme.colors.gray1,
-                    )
-
-                    DaisoDropdownChip(
-                        text = "브랜드",
-                        isFilled = true,
-                    )
-
-                    DaisoDropdownChip(
-                        text = "카테고리",
-                        isFilled = true,
-                    )
-
-                    DaisoDropdownChip(
-                        text = "별점",
-                        isFilled = true,
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(20.dp))
-            }
-
-            item {
-                Row(
-                    modifier = Modifier
-                        .border(
-                            width = 1.dp,
-                            color = DaisoTheme.colors.gray1,
-                        )
-                        .padding(horizontal = 20.dp, vertical = 5.dp)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    SoldOutCheck()
-
-                    DaisoDropdownChip(
-                        text = "추천순",
-                        isFilled = false,
-                    )
-                }
-            }
-
-            itemsIndexed(
-                items = products,
-                key = { _, product -> product.id }
-            ) { index, product ->
-                ProductCard(
-                    productNumber = product.productNumber,
-                    productName = product.name,
-                    price = product.price,
-                    imageUrl = product.imageUrl,
-                    reviewCount = product.reviewCount,
-                    isLiked = product.isLiked,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
+                VerticalDivider(
+                    modifier = Modifier.height(15.dp),
+                    thickness = 1.dp,
+                    color = DaisoTheme.colors.gray4,
                 )
-                if (index != products.lastIndex) {
-                    HorizontalDivider(
-                        thickness = 1.dp,
-                        color = DaisoTheme.colors.gray1
+
+                DaisoBasicChip(
+                    text = "NEW",
+                    textColor = DaisoTheme.colors.gray10,
+                    textStyle = DaisoTheme.typography.body.r14,
+                    backgroundColor = Color.Transparent,
+                    onClick = {},
+                    borderColor = DaisoTheme.colors.gray1,
+                )
+
+                DaisoDropdownChip(
+                    text = "브랜드",
+                    isFilled = true,
+                )
+
+                DaisoDropdownChip(
+                    text = "카테고리",
+                    isFilled = true,
+                )
+
+                DaisoDropdownChip(
+                    text = "별점",
+                    isFilled = true,
+                )
+            }
+
+            Spacer(modifier = Modifier.height(20.dp))
+        }
+
+        item {
+            Row(
+                modifier = Modifier
+                    .border(
+                        width = 1.dp,
+                        color = DaisoTheme.colors.gray1,
                     )
-                }
+                    .padding(horizontal = 20.dp, vertical = 5.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                SoldOutCheck()
+
+                DaisoDropdownChip(
+                    text = "추천순",
+                    isFilled = false,
+                )
+            }
+        }
+
+        itemsIndexed(
+            items = products,
+            key = { _, product -> product.id }
+        ) { index, product ->
+            ProductCard(
+                productNumber = product.productNumber,
+                productName = product.name,
+                price = product.price,
+                imageUrl = product.imageUrl,
+                reviewCount = product.reviewCount,
+                isLiked = product.isLiked,
+                onLikeClick = {},
+                onFindClick = {},
+                modifier = Modifier.padding(20.dp),
+            )
+            if (index != products.lastIndex) {
+                HorizontalDivider(
+                    thickness = 1.dp,
+                    color = DaisoTheme.colors.gray1
+                )
             }
         }
     }
-
 }
 
 @Composable
@@ -190,7 +206,12 @@ private fun SoldOutCheck() {
 private fun SearchScreenPreview() {
     DaisoMallTheme {
         SearchScreen(
-            products = dummyProducts,
+            state = SearchContract.State(
+                searchedKeyword = "마스크",
+                productList = dummyProducts.toImmutableList(),
+            ),
+            searchTextFieldState = rememberTextFieldState(initialText = "마스크"),
+            onSearch = {},
         )
     }
 }
