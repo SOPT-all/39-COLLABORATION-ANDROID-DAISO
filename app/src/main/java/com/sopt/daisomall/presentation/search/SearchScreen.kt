@@ -30,6 +30,8 @@ import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SearchRoute(
+    navigateBack: () -> Unit,
+    navigateToStockCheck: (Long) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SearchViewModel = viewModel(),
 ) {
@@ -40,6 +42,8 @@ fun SearchRoute(
         searchTextFieldState = viewModel.searchTextFieldState,
         onSearch = viewModel::search,
         onLikeClick = viewModel::onLikeClick,
+        onBackClick = navigateBack,
+        onFindClick = navigateToStockCheck,
         modifier = modifier,
     )
 }
@@ -50,6 +54,8 @@ private fun SearchScreen(
     searchTextFieldState: TextFieldState,
     onSearch: () -> Unit,
     onLikeClick: (Long) -> Unit,
+    onBackClick: () -> Unit,
+    onFindClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -59,13 +65,14 @@ private fun SearchScreen(
     ) {
         SearchTextFieldTopBar(
             state = searchTextFieldState,
-            onBackClick = {},
+            onBackClick = onBackClick,
             onSearch = onSearch,
         )
 
         SearchResultList(
             products = state.productList,
             onLikeClick = onLikeClick,
+            onFindClick = onFindClick,
             modifier = Modifier.weight(1f),
         )
     }
@@ -75,6 +82,7 @@ private fun SearchScreen(
 private fun SearchResultList(
     products: ImmutableList<ProductUiModel>,
     onLikeClick: (Long) -> Unit,
+    onFindClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -102,7 +110,7 @@ private fun SearchResultList(
                 reviewCount = product.reviewCount,
                 isLiked = product.isLiked,
                 onLikeClick = { onLikeClick(product.id) },
-                onFindClick = {},
+                onFindClick = { onFindClick(product.id) },
                 modifier = Modifier.padding(20.dp),
             )
             if (index != products.lastIndex) {
@@ -127,6 +135,8 @@ private fun SearchScreenPreview() {
             searchTextFieldState = rememberTextFieldState(initialText = "마스크"),
             onSearch = {},
             onLikeClick = {},
+            onBackClick = {},
+            onFindClick = {},
         )
     }
 }
