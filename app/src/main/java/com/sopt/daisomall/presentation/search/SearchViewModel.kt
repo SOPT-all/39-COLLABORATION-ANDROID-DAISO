@@ -3,17 +3,11 @@ package com.sopt.daisomall.presentation.search
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.sopt.daisomall.core.common.util.suspendRunCatching
-import com.sopt.daisomall.presentation.search.model.ProductUiModel
 import com.sopt.daisomall.presentation.search.model.dummyProducts
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 class SearchViewModel(
     savedStateHandle: SavedStateHandle,
@@ -26,8 +20,6 @@ class SearchViewModel(
     private val _state = MutableStateFlow(SearchContract.State())
     val state: StateFlow<SearchContract.State> = _state.asStateFlow()
 
-    private var searchJob: Job? = null
-
     init {
         loadProducts(initialKeyword)
     }
@@ -39,23 +31,18 @@ class SearchViewModel(
         loadProducts(keyword)
     }
 
-    private fun loadProducts(keyword: String) {
-        searchJob?.cancel()
-        searchJob = viewModelScope.launch {
-            suspendRunCatching { fetchProducts(keyword) }
-                .onSuccess { products -> _state.update { it.searchSucceeded(keyword, products) } }
-                .onFailure { _state.update { it.searchFailed() } }
-        }
+    fun onLikeClick(productId: Long) {
+        _state.update { it.toggleLike(productId) }
     }
 
-    // TODO: API 연결 시 repository 호출로 교체
-    private suspend fun fetchProducts(keyword: String): List<ProductUiModel> {
-        delay(500)
-        return if (keyword.isEmpty()) {
+    // TODO: API 연결 시 서버 검색 결과로 교체
+    private fun loadProducts(keyword: String) {
+        val products = if (keyword.isEmpty()) {
             dummyProducts
         } else {
             dummyProducts.filter { it.name.contains(keyword) || it.productNumber.contains(keyword) }
         }
+        _state.update { it.searchSucceeded(keyword, products) }
     }
 
     private companion object {

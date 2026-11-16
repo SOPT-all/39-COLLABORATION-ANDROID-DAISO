@@ -39,6 +39,7 @@ fun SearchRoute(
         state = state,
         searchTextFieldState = viewModel.searchTextFieldState,
         onSearch = viewModel::search,
+        onLikeClick = viewModel::onLikeClick,
         modifier = modifier,
     )
 }
@@ -48,6 +49,7 @@ private fun SearchScreen(
     state: SearchContract.State,
     searchTextFieldState: TextFieldState,
     onSearch: () -> Unit,
+    onLikeClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -63,6 +65,7 @@ private fun SearchScreen(
 
         SearchResultList(
             products = state.productList,
+            onLikeClick = onLikeClick,
             modifier = Modifier.weight(1f),
         )
     }
@@ -71,6 +74,7 @@ private fun SearchScreen(
 @Composable
 private fun SearchResultList(
     products: ImmutableList<ProductUiModel>,
+    onLikeClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -97,7 +101,7 @@ private fun SearchResultList(
                 imageUrl = product.imageUrl,
                 reviewCount = product.reviewCount,
                 isLiked = product.isLiked,
-                onLikeClick = {},
+                onLikeClick = { onLikeClick(product.id) },
                 onFindClick = {},
                 modifier = Modifier.padding(20.dp),
             )
@@ -122,6 +126,7 @@ private fun SearchScreenPreview() {
             ),
             searchTextFieldState = rememberTextFieldState(initialText = "마스크"),
             onSearch = {},
+            onLikeClick = {},
         )
     }
 }
