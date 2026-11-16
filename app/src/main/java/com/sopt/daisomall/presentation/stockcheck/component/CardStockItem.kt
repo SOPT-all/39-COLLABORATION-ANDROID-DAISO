@@ -148,7 +148,7 @@ fun CardStockItem(
     }
 }
 
-@Preview(showBackground = true, widthDp = 335)
+@Preview(showBackground = true, widthDp = 335, name = "영업중 & 북마크 O & 재고 O")
 @Composable
 private fun CardStockItemAvailablePreview() {
     DaisoMallTheme {
@@ -167,7 +167,7 @@ private fun CardStockItemAvailablePreview() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 335)
+@Preview(showBackground = true, widthDp = 335, name = "영업종료 & 북마크 x & 재고 O")
 @Composable
 private fun CardStockItemClosePreview() {
     DaisoMallTheme {
@@ -186,7 +186,7 @@ private fun CardStockItemClosePreview() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 335)
+@Preview(showBackground = true, widthDp = 335, name = "영업종료 & 일시품절 O")
 @Composable
 private fun CardStockItemOutPreview() {
     DaisoMallTheme {
