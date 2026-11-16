@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -29,14 +30,16 @@ fun CardimgProduct(
     imageUrl: String,
     modifier: Modifier = Modifier,
 ) {
-    Box() {
+    Box(
+      modifier = modifier
+    ) {
         UrlImage(
             url = imageUrl,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop,
         )
 
-        CustomStatusIcon(
+        CustomStatusChip(
             isOpen = isOpen,
             modifier = Modifier.align(Alignment.BottomCenter)
         )
@@ -44,7 +47,7 @@ fun CardimgProduct(
 }
 
 @Composable
-private fun CustomStatusIcon(
+private fun CustomStatusChip(
     isOpen: Boolean,
     modifier: Modifier = Modifier,
 ) {
@@ -53,12 +56,13 @@ private fun CustomStatusIcon(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(color = DaisoTheme.colors.gray8),
+            .background(color = DaisoTheme.colors.gray8)
+            .padding(horizontal = 22.dp, vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(space = 3.dp, alignment = Alignment.CenterHorizontally,),
     ) {
         Icon(
-            modifier = modifier.size(6.dp),
+            modifier = Modifier.size(6.dp),
             imageVector = ImageVector.vectorResource(id = iconRes),
             contentDescription = null,
             tint = Color.Unspecified,
