@@ -125,7 +125,7 @@ private fun HomeRecommendCardNotNewPreview() {
             imageUrl = "",
             reviewCount = "70",
             isLiked = false,
-            isNew = true,
+            isNew = false,
             onLikeClick = {},
         )
     }
