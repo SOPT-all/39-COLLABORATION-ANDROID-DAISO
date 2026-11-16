@@ -11,11 +11,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.input.TextFieldState
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +26,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.daisomall.R
 import com.sopt.daisomall.core.designsystem.component.button.DaisoFilter
 import com.sopt.daisomall.core.designsystem.component.chip.DaisoBasicChip
@@ -31,18 +36,25 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.presentation.search.component.ProductCard
 import com.sopt.daisomall.presentation.search.component.SearchTextFieldTopBar
+import com.sopt.daisomall.presentation.search.model.ProductUiModel
+import com.sopt.daisomall.presentation.search.model.dummyProducts
 
 @Composable
 fun SearchRoute(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: SearchViewModel = viewModel(),
 ) {
+    val products by viewModel.products.collectAsStateWithLifecycle()
+
     SearchScreen(
+        products = products,
         modifier = modifier
     )
 }
 
 @Composable
 private fun SearchScreen(
+    products: List<ProductUiModel>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -126,128 +138,27 @@ private fun SearchScreen(
                 }
             }
 
-            item {
+            itemsIndexed(
+                items = products,
+                key = { _, product -> product.id }
+            ) { index, product ->
                 ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
+                    productNumber = product.productNumber,
+                    productName = product.name,
+                    price = product.price,
+                    imageUrl = product.imageUrl,
+                    reviewCount = product.reviewCount,
+                    isLiked = product.isLiked,
                     onLikeClick = {},
                     onFindClick = {},
                     modifier = Modifier.padding(20.dp),
                 )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
-                ProductCard(
-                    productNumber = "1075034",
-                    productName = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",
-                    price = "1,000",
-                    imageUrl = "",
-                    reviewCount = "9,999+",
-                    isLiked = false,
-                    onLikeClick = {},
-                    onFindClick = {},
-                    modifier = Modifier.padding(20.dp),
-                )
+                if (index != products.lastIndex) {
+                    HorizontalDivider(
+                        thickness = 1.dp,
+                        color = DaisoTheme.colors.gray1
+                    )
+                }
             }
         }
     }
@@ -278,6 +189,8 @@ private fun SoldOutCheck() {
 @Composable
 private fun SearchScreenPreview() {
     DaisoMallTheme {
-        SearchScreen()
+        SearchScreen(
+            products = dummyProducts,
+        )
     }
 }
