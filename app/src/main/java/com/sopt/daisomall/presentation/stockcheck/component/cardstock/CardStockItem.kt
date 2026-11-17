@@ -12,6 +12,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -21,22 +25,18 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.R
+import com.sopt.daisomall.core.common.extensions.noRippleClickable
 import com.sopt.daisomall.core.designsystem.component.button.ButtonType
 import com.sopt.daisomall.core.designsystem.component.button.DaisoButton
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.presentation.stockcheck.component.CardimgProduct
 import com.sopt.daisomall.presentation.stockcheck.component.LocationTag
-
-enum class StockStatus {
-    PICKUP_AVAILABLE, // 매장픽업
-    PICKUP_CLOSED,    // 픽업마감
-    OUT_OF_STOCK,     // 재입고알림
-}
+import com.sopt.daisomall.presentation.stockcheck.model.StockStatus
 
 @Composable
 fun CardStockItem(
-    store: String,
+    storeName: String,
     distanceMeters: Int,
     stockCount: Int,
     floor: String,
@@ -47,11 +47,13 @@ fun CardStockItem(
     isFavoriteStore : Boolean,
     modifier: Modifier = Modifier,
 ) {
+    var isEnabled by remember { mutableStateOf(false) }
+    val hasStock = stockCount >= 1
+
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .height(IntrinsicSize.Min)
-            .height(110.dp),
+            .height(IntrinsicSize.Min),
         horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         CardimgProduct(
@@ -61,18 +63,18 @@ fun CardStockItem(
         )
 
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth(),
         ) {
             Row(
-                modifier = modifier,
+                modifier = Modifier,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = store,
+                        text = storeName,
                         color = DaisoTheme.colors.gray10,
                         style = DaisoTheme.typography.body.b16,
                     )
@@ -90,18 +92,23 @@ fun CardStockItem(
 
                 Icon(
                     imageVector =
-                        if (isFavoriteStore == true) {
+                        if (isFavoriteStore) {
                         ImageVector.vectorResource(R.drawable.ic_bookmark_pressed_24)
                     } else {
                         ImageVector.vectorResource(R.drawable.ic_bookmark_default_24)
                     },
                     contentDescription = null,
                     tint = Color.Unspecified,
+                    modifier = Modifier
+                        .noRippleClickable(
+                            isEnabled = !isEnabled,
+                            onClick = TODO()
+                        )
                 )
             }
             Text(
-                text = if (stockCount >= 1) {"재고 ${stockCount}개 이하" } else {"일시품절"},
-                color = if (stockCount >= 1) DaisoTheme.colors.primaryRed else DaisoTheme.colors.gray6,
+                text = if (hasStock) {"재고 ${stockCount}개 이하" } else {"일시품절"},
+                color = if (hasStock) DaisoTheme.colors.primaryRed else DaisoTheme.colors.gray6,
                 style = DaisoTheme.typography.body.sb12,
             )
 
@@ -110,7 +117,7 @@ fun CardStockItem(
             LocationTag(
                 floor = floor,
                 number = number,
-                modifier = Modifier.alpha(if (stockCount >= 1) 1f else 0f)
+                modifier = Modifier.alpha(if (hasStock) 1f else 0f)
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -155,7 +162,7 @@ fun CardStockItem(
 private fun CardStockItemAvailablePreview() {
     DaisoMallTheme {
         CardStockItem(
-            store = "구로디지털단지지역점",
+            storeName = "구로디지털단지지역점",
             distanceMeters= 300,
             stockCount = 56,
             floor = "2F",
@@ -174,7 +181,7 @@ private fun CardStockItemAvailablePreview() {
 private fun CardStockItemClosePreview() {
     DaisoMallTheme {
         CardStockItem(
-            store = "구로디지털단지지역점",
+            storeName = "구로디지털단지지역점",
             distanceMeters= 300,
             stockCount = 56,
             floor = "2F",
@@ -193,7 +200,7 @@ private fun CardStockItemClosePreview() {
 private fun CardStockItemOutPreview() {
     DaisoMallTheme {
         CardStockItem(
-            store = "구로디지털단지지역점",
+            storeName = "구로디지털단지지역점",
             distanceMeters= 300,
             stockCount = 0,
             floor = "2F",

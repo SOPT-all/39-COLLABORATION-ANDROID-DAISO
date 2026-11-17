@@ -9,10 +9,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import androidx.compose.foundation.lazy.items
+import com.sopt.daisomall.presentation.stockcheck.model.StockStatus
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import java.math.BigInteger
 
 data class StockStore(
-    val id: Int,
-    val store: String,
+    val storeId: BigInteger,
+    val storeName: String,
     val distanceMeters: Int,
     val stockCount: Int,
     val floor: String,
@@ -25,7 +29,7 @@ data class StockStore(
 
 @Composable
 fun CardStock(
-    stores: List<StockStore>,
+    stores: ImmutableList<StockStore>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -35,10 +39,10 @@ fun CardStock(
     ) {
         items(
             items = stores,
-            key = { store -> store.id },
+            key = { store -> store.storeId },
         ) { item ->
             CardStockItem(
-                store = item.store,
+                storeName = item.storeName,
                 distanceMeters = item.distanceMeters,
                 stockCount = item.stockCount,
                 floor = item.floor,
@@ -55,10 +59,10 @@ fun CardStock(
 @Preview(showBackground = true, widthDp = 335, heightDp = 380)
 @Composable
 private fun CardStockPreview() {
-    val newStores = listOf(
+    val newStores = persistentListOf(
         StockStore(
-            id = 1,
-            store = "구로디지털단지역점",
+            storeId = BigInteger("12345"),
+            storeName = "구로디지털단지역점",
             distanceMeters = 300,
             stockCount = 56,
             floor = "2F",
@@ -69,8 +73,8 @@ private fun CardStockPreview() {
             isFavoriteStore = true,
         ),
         StockStore(
-            id = 2,
-            store = "모앱1조최고지역점",
+            storeId = BigInteger("23456"),
+            storeName = "모앱1조최고지역점",
             distanceMeters = 500,
             stockCount = 56,
             floor = "1F",
@@ -81,8 +85,8 @@ private fun CardStockPreview() {
             isFavoriteStore = false,
         ),
         StockStore(
-            id = 3,
-            store = "합세최강가만안드맞점",
+            storeId = BigInteger("34567"),
+            storeName = "합세최강가만안드맞점",
             distanceMeters = 800,
             stockCount = 0,
             floor = "",
