@@ -41,8 +41,10 @@ fun TapGroup(
             contentAlignment = Alignment.Center,
         ) {
             Row(
+                modifier = Modifier
+                    .padding(horizontal = 50.dp, vertical = 12.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(7.dp),
+                horizontalArrangement = Arrangement.spacedBy(7.dp) ,
             ) {
                 Text(
                     text = "매장 검색",
