@@ -1,5 +1,6 @@
-package com.sopt.daisomall.presentation.stockcheck.component.cardstock
+package com.sopt.daisomall.presentation.stockcheck.component
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -8,34 +9,58 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.R
 import com.sopt.daisomall.core.common.extensions.noRippleClickable
 import com.sopt.daisomall.core.designsystem.component.button.ButtonType
 import com.sopt.daisomall.core.designsystem.component.button.DaisoButton
-import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
-import com.sopt.daisomall.presentation.stockcheck.component.CardimgProduct
-import com.sopt.daisomall.presentation.stockcheck.component.LocationTag
-import com.sopt.daisomall.presentation.stockcheck.model.StockStatus
+import com.sopt.daisomall.presentation.stockcheck.model.StockStoreModel
+import com.sopt.daisomall.presentation.stockcheck.type.StockStatus
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import java.math.BigInteger
 
 @Composable
-fun CardStockItem(
-    stockStore : StockStore,
+fun CardStock(
+    stores: ImmutableList<StockStoreModel>,
+    modifier: Modifier = Modifier,
+) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+    ) {
+        items(
+            items = stores,
+            key = { item -> item.storeId },
+        ) { item ->
+            CardStockItem(
+                stockStore = item,
+            )
+        }
+    }
+}
+
+@Composable
+private fun CardStockItem(
+    stockStore : StockStoreModel,
     modifier: Modifier = Modifier,
 ) {
     var isBookmarked by remember(stockStore.isFavoriteStore) {
@@ -62,25 +87,21 @@ fun CardStockItem(
         ) {
             Row(
                 modifier = Modifier,
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.Bottom,
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        text = stockStore.storeName,
-                        color = DaisoTheme.colors.gray10,
-                        style = DaisoTheme.typography.body.b16,
-                    )
+                Text(
+                    text = stockStore.storeName,
+                    color = DaisoTheme.colors.gray10,
+                    style = DaisoTheme.typography.body.b16,
+                )
 
-                    Spacer(modifier = Modifier.width(4.dp))
+                Spacer(modifier = Modifier.width(4.dp))
 
-                    Text(
-                        text = "${stockStore.distanceMeters}m",
-                        color = DaisoTheme.colors.gray6,
-                        style = DaisoTheme.typography.caption.r10,
-                    )
-                }
+                Text(
+                    text = "${stockStore.distanceMeters}m",
+                    color = DaisoTheme.colors.gray6,
+                    style = DaisoTheme.typography.caption.r10,
+                )
 
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -122,7 +143,7 @@ fun CardStockItem(
             }
 
             Spacer(modifier = Modifier.weight(1f))
-            // 수정 후
+
             val buttonType = when (stockStore.stockStatus) {
                 StockStatus.PICKUP_AVAILABLE -> ButtonType.RED_FILLED
                 StockStatus.PICKUP_CLOSED -> ButtonType.DISABLED
@@ -152,59 +173,49 @@ fun CardStockItem(
     }
 }
 
-private val previewStockStore = StockStore(
-    storeId = BigInteger("12345"),
-    storeName = "구로디지털단지지역점",
-    distanceMeters = 300,
-    stockCount = 56,
-    floor = "2F",
-    number = "2번",
-    stockStatus = StockStatus.PICKUP_AVAILABLE,
-    isOpen = true,
-    imageUrl = "",
-    isFavoriteStore = true,
-)
-
-@Preview(showBackground = true, widthDp = 335, name = "영업중 & 북마크 O & 재고 O")
+@Preview(showBackground = true, widthDp = 335, heightDp = 380)
 @Composable
-private fun CardStockItemAvailablePreview() {
-    DaisoMallTheme {
-        CardStockItem(
-            stockStore = previewStockStore,
-            modifier = Modifier.width(247.dp),
-        )
-    }
-}
+private fun CardStockPreview() {
+    val newStores = persistentListOf(
+        StockStoreModel(
+            storeId = BigInteger("12345"),
+            storeName = "구로디지털단지역점",
+            distanceMeters = 300,
+            stockCount = 56,
+            floor = "2F",
+            number = "2번",
+            imageUrl = "",
+            isOpen = true,
+            stockStatus = StockStatus.PICKUP_AVAILABLE,
+            isFavoriteStore = true,
+        ),
+        StockStoreModel(
+            storeId = BigInteger("23456"),
+            storeName = "모앱1조최고지역점",
+            distanceMeters = 500,
+            stockCount = 56,
+            floor = "1F",
+            number = "3번",
+            imageUrl = "",
+            isOpen = false,
+            stockStatus = StockStatus.PICKUP_CLOSED,
+            isFavoriteStore = false,
+        ),
+        StockStoreModel(
+            storeId = BigInteger("34567"),
+            storeName = "합세최강가만안드맞점",
+            distanceMeters = 800,
+            stockCount = 0,
+            floor = "",
+            number = "",
+            imageUrl = "",
+            isOpen = false,
+            stockStatus = StockStatus.OUT_OF_STOCK,
+            isFavoriteStore = false,
+        ),
+    )
 
-@Preview(showBackground = true, widthDp = 335, name = "영업종료 & 북마크 x & 재고 O")
-@Composable
-private fun CardStockItemClosePreview() {
     DaisoMallTheme {
-        CardStockItem(
-            stockStore = previewStockStore.copy(
-                stockStatus = StockStatus.PICKUP_CLOSED,
-                isOpen = false,
-                isFavoriteStore = false,
-            ),
-            modifier = Modifier.width(247.dp),
-        )
-    }
-}
-
-@Preview(showBackground = true, widthDp = 335, name = "영업종료 & 일시품절 O")
-@Composable
-private fun CardStockItemOutPreview() {
-    DaisoMallTheme {
-        CardStockItem(
-            stockStore = previewStockStore.copy(
-                stockCount = 0,
-                stockStatus = StockStatus.OUT_OF_STOCK,
-                isOpen = false,
-                isFavoriteStore = false,
-                floor = "",
-                number = "",
-            ),
-            modifier = Modifier.width(247.dp),
-        )
+        CardStock(stores = newStores)
     }
 }

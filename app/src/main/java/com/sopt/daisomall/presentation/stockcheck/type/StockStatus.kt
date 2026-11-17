@@ -1,4 +1,4 @@
-package com.sopt.daisomall.presentation.stockcheck.model
+package com.sopt.daisomall.presentation.stockcheck.type
 
 enum class StockStatus {
     PICKUP_AVAILABLE, // 매장픽업
