@@ -50,7 +50,7 @@ fun SearchRoute(
 
 @Composable
 private fun SearchScreen(
-    state: SearchContract.State,
+    state: SearchUiState,
     searchTextFieldState: TextFieldState,
     onSearch: () -> Unit,
     onLikeClick: (Long) -> Unit,
@@ -128,7 +128,7 @@ private fun SearchResultList(
 private fun SearchScreenPreview() {
     DaisoMallTheme {
         SearchScreen(
-            state = SearchContract.State(
+            state = SearchUiState(
                 searchedKeyword = "마스크",
                 productList = dummyProducts.toImmutableList(),
             ),

@@ -19,8 +19,8 @@ class SearchViewModel(
 
     val searchTextFieldState = TextFieldState(initialText = initialKeyword)
 
-    private val _state = MutableStateFlow(SearchContract.State())
-    val state: StateFlow<SearchContract.State> = _state.asStateFlow()
+    private val _state = MutableStateFlow(SearchUiState())
+    val state: StateFlow<SearchUiState> = _state.asStateFlow()
 
     init {
         loadProducts(initialKeyword)
