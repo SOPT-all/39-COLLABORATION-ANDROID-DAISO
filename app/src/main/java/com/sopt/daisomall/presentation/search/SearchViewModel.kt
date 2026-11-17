@@ -3,7 +3,9 @@ package com.sopt.daisomall.presentation.search
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.navigation.toRoute
 import com.sopt.daisomall.presentation.search.model.dummyProducts
+import com.sopt.daisomall.presentation.search.navigation.Search
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +15,7 @@ class SearchViewModel(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-    private val initialKeyword: String = savedStateHandle.get<String>(KEY_KEYWORD).orEmpty()
+    private val initialKeyword: String = savedStateHandle.toRoute<Search>().keyword
 
     val searchTextFieldState = TextFieldState(initialText = initialKeyword)
 
@@ -25,10 +27,7 @@ class SearchViewModel(
     }
 
     fun search() {
-        val keyword = searchTextFieldState.text.toString().trim()
-        if (keyword.isEmpty()) return
-
-        loadProducts(keyword)
+        loadProducts(searchTextFieldState.text.toString().trim())
     }
 
     fun onLikeClick(productId: Long) {
@@ -43,9 +42,5 @@ class SearchViewModel(
             dummyProducts.filter { it.name.contains(keyword) || it.productNumber.contains(keyword) }
         }
         _state.update { it.searchSucceeded(keyword, products) }
-    }
-
-    private companion object {
-        const val KEY_KEYWORD = "keyword"
     }
 }
