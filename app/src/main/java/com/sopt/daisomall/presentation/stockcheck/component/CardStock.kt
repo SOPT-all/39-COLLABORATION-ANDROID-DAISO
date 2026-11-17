@@ -35,7 +35,6 @@ import com.sopt.daisomall.presentation.stockcheck.model.StockStoreModel
 import com.sopt.daisomall.presentation.stockcheck.type.StockStatus
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import java.math.BigInteger
 
 @Composable
 fun CardStock(
@@ -178,7 +177,7 @@ private fun CardStockItem(
 private fun CardStockPreview() {
     val newStores = persistentListOf(
         StockStoreModel(
-            storeId = BigInteger("12345"),
+            storeId = 12345,
             storeName = "구로디지털단지역점",
             distanceMeters = 300,
             stockCount = 56,
@@ -190,7 +189,7 @@ private fun CardStockPreview() {
             isFavoriteStore = true,
         ),
         StockStoreModel(
-            storeId = BigInteger("23456"),
+            storeId = 23456,
             storeName = "모앱1조최고지역점",
             distanceMeters = 500,
             stockCount = 56,
@@ -202,7 +201,7 @@ private fun CardStockPreview() {
             isFavoriteStore = false,
         ),
         StockStoreModel(
-            storeId = BigInteger("34567"),
+            storeId = 34567,
             storeName = "합세최강가만안드맞점",
             distanceMeters = 800,
             stockCount = 0,

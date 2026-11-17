@@ -1,10 +1,9 @@
 package com.sopt.daisomall.presentation.stockcheck.model
 
 import com.sopt.daisomall.presentation.stockcheck.type.StockStatus
-import java.math.BigInteger
 
 data class StockStoreModel(
-    val storeId: BigInteger,
+    val storeId: Long,
     val storeName: String,
     val distanceMeters: Int,
     val stockCount: Int,
