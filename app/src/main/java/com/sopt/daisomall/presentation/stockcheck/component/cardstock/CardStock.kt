@@ -39,18 +39,10 @@ fun CardStock(
     ) {
         items(
             items = stores,
-            key = { store -> store.storeId },
+            key = { item -> item.storeId },
         ) { item ->
             CardStockItem(
-                storeName = item.storeName,
-                distanceMeters = item.distanceMeters,
-                stockCount = item.stockCount,
-                floor = item.floor,
-                number = item.number,
-                stockStatus = item.stockStatus,
-                imageUrl = item.imageUrl,
-                isOpen = item.isOpen,
-                isFavoriteStore = item.isFavoriteStore,
+                stockStore = item,
             )
         }
     }

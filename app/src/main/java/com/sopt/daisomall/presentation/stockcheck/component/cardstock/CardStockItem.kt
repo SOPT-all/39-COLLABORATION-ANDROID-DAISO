@@ -31,24 +31,17 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.presentation.stockcheck.component.CardimgProduct
 import com.sopt.daisomall.presentation.stockcheck.component.LocationTag
 import com.sopt.daisomall.presentation.stockcheck.model.StockStatus
+import java.math.BigInteger
 
 @Composable
 fun CardStockItem(
-    storeName: String,
-    distanceMeters: Int,
-    stockCount: Int,
-    floor: String,
-    number: String,
-    stockStatus: StockStatus,
-    imageUrl: String,
-    isOpen : Boolean,
-    isFavoriteStore : Boolean,
+    stockStore : StockStore,
     modifier: Modifier = Modifier,
 ) {
-    var isBookmarked by remember(isFavoriteStore) {
-        mutableStateOf(isFavoriteStore)
+    var isBookmarked by remember(stockStore.isFavoriteStore) {
+        mutableStateOf(stockStore.isFavoriteStore)
     }
-    val hasStock = stockCount >= 1
+    val hasStock = stockStore.stockCount >= 1
 
     Row(
         modifier = modifier
@@ -56,8 +49,8 @@ fun CardStockItem(
             .height(IntrinsicSize.Min),
     ) {
         CardimgProduct(
-            imageUrl = imageUrl,
-            isOpen = isOpen,
+            imageUrl = stockStore.imageUrl,
+            isOpen = stockStore.isOpen,
             modifier = Modifier.size(width = 82.dp, height = 110.dp),
         )
 
@@ -75,7 +68,7 @@ fun CardStockItem(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = storeName,
+                        text = stockStore.storeName,
                         color = DaisoTheme.colors.gray10,
                         style = DaisoTheme.typography.body.b16,
                     )
@@ -83,7 +76,7 @@ fun CardStockItem(
                     Spacer(modifier = Modifier.width(4.dp))
 
                     Text(
-                        text = "${distanceMeters}m",
+                        text = "${stockStore.distanceMeters}m",
                         color = DaisoTheme.colors.gray6,
                         style = DaisoTheme.typography.caption.r10,
                     )
@@ -114,7 +107,7 @@ fun CardStockItem(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = if (hasStock) {"재고 ${stockCount}개 이하" } else {"일시품절"},
+                text = if (hasStock) {"재고 ${stockStore.stockCount}개 이하" } else {"일시품절"},
                 color = if (hasStock) DaisoTheme.colors.primaryRed else DaisoTheme.colors.gray6,
                 style = DaisoTheme.typography.body.sb12,
             )
@@ -123,26 +116,26 @@ fun CardStockItem(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 LocationTag(
-                    floor = floor,
-                    number = number,
+                    floor = stockStore.floor,
+                    number = stockStore.number,
                 )
             }
 
             Spacer(modifier = Modifier.weight(1f))
             // 수정 후
-            val buttonType = when (stockStatus) {
+            val buttonType = when (stockStore.stockStatus) {
                 StockStatus.PICKUP_AVAILABLE -> ButtonType.RED_FILLED
                 StockStatus.PICKUP_CLOSED -> ButtonType.DISABLED
                 StockStatus.OUT_OF_STOCK -> ButtonType.BLACK_LINE
             }
 
-            val buttonText = when (stockStatus) {
+            val buttonText = when (stockStore.stockStatus) {
                 StockStatus.PICKUP_AVAILABLE -> "매장픽업"
                 StockStatus.PICKUP_CLOSED -> "픽업미운영"
                 StockStatus.OUT_OF_STOCK -> "재입고알림"
             }
 
-            val buttonIcon = when (stockStatus) {
+            val buttonIcon = when (stockStore.stockStatus) {
                 StockStatus.PICKUP_AVAILABLE -> R.drawable.ic_shoppingbag_small_20
                 StockStatus.PICKUP_CLOSED -> R.drawable.ic_shoppingbag_small_20
                 StockStatus.OUT_OF_STOCK -> R.drawable.ic_bell_20
@@ -155,55 +148,29 @@ fun CardStockItem(
                 icon = buttonIcon,
                 modifier = Modifier.fillMaxWidth(),
             )
-            // 수정 전
-          /*  when (stockStatus) {
-                StockStatus.PICKUP_AVAILABLE -> {
-                    DaisoButton(
-                        type = ButtonType.RED_FILLED,
-                        text = "매장픽업",
-                        onClick = {},
-                        icon = R.drawable.ic_shoppingbag_small_20,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-
-                StockStatus.PICKUP_CLOSED -> {
-                    DaisoButton(
-                        type = ButtonType.DISABLED,
-                        text = "픽업미운영",
-                        onClick = {},
-                        icon = R.drawable.ic_shoppingbag_small_20,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-
-                StockStatus.OUT_OF_STOCK -> {
-                    DaisoButton(
-                        type = ButtonType.BLACK_LINE,
-                        text = "재입고알림",
-                        onClick = {},
-                        icon = R.drawable.ic_bell_20,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                } */
-            }
         }
+    }
 }
+
+private val previewStockStore = StockStore(
+    storeId = BigInteger("12345"),
+    storeName = "구로디지털단지지역점",
+    distanceMeters = 300,
+    stockCount = 56,
+    floor = "2F",
+    number = "2번",
+    stockStatus = StockStatus.PICKUP_AVAILABLE,
+    isOpen = true,
+    imageUrl = "",
+    isFavoriteStore = true,
+)
 
 @Preview(showBackground = true, widthDp = 335, name = "영업중 & 북마크 O & 재고 O")
 @Composable
 private fun CardStockItemAvailablePreview() {
     DaisoMallTheme {
         CardStockItem(
-            storeName = "구로디지털단지지역점",
-            distanceMeters= 300,
-            stockCount = 56,
-            floor = "2F",
-            number = "2번",
-            stockStatus = StockStatus.PICKUP_AVAILABLE,
-            isOpen = true,
-            imageUrl = "",
-            isFavoriteStore = true,
+            stockStore = previewStockStore,
             modifier = Modifier.width(247.dp),
         )
     }
@@ -214,15 +181,11 @@ private fun CardStockItemAvailablePreview() {
 private fun CardStockItemClosePreview() {
     DaisoMallTheme {
         CardStockItem(
-            storeName = "구로디지털단지지역점",
-            distanceMeters= 300,
-            stockCount = 56,
-            floor = "2F",
-            number = "2번",
-            stockStatus = StockStatus.PICKUP_CLOSED,
-            isOpen = false,
-            imageUrl = "",
-            isFavoriteStore = false,
+            stockStore = previewStockStore.copy(
+                stockStatus = StockStatus.PICKUP_CLOSED,
+                isOpen = false,
+                isFavoriteStore = false,
+            ),
             modifier = Modifier.width(247.dp),
         )
     }
@@ -233,15 +196,14 @@ private fun CardStockItemClosePreview() {
 private fun CardStockItemOutPreview() {
     DaisoMallTheme {
         CardStockItem(
-            storeName = "구로디지털단지지역점",
-            distanceMeters= 300,
-            stockCount = 0,
-            floor = "2F",
-            number = "2번",
-            stockStatus = StockStatus.OUT_OF_STOCK,
-            isOpen = false,
-            imageUrl = "",
-            isFavoriteStore = false,
+            stockStore = previewStockStore.copy(
+                stockCount = 0,
+                stockStatus = StockStatus.OUT_OF_STOCK,
+                isOpen = false,
+                isFavoriteStore = false,
+                floor = "",
+                number = "",
+            ),
             modifier = Modifier.width(247.dp),
         )
     }
