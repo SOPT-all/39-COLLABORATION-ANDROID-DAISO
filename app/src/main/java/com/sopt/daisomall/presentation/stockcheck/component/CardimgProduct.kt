@@ -57,7 +57,7 @@ private fun CustomStatusChip(
         modifier = modifier
             .fillMaxWidth()
             .background(color = DaisoTheme.colors.gray8)
-            .padding(horizontal = 22.dp, vertical = 2.dp),
+            .padding(vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(space = 3.dp, alignment = Alignment.CenterHorizontally,),
     ) {
@@ -72,6 +72,8 @@ private fun CustomStatusChip(
             text = if (isOpen) "영업중" else "영업종료",
             style = DaisoTheme.typography.caption.b10,
             color = DaisoTheme.colors.white,
+            maxLines = 1,
+            softWrap = false,
         )
     }
 }
