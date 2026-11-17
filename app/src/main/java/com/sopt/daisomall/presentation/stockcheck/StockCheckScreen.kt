@@ -1,5 +1,6 @@
 package com.sopt.daisomall.presentation.stockcheck
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
@@ -26,11 +28,13 @@ import com.sopt.daisomall.core.designsystem.component.chip.DaisoIconChip
 import com.sopt.daisomall.core.designsystem.component.chip.DaisoSoldOutChip
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
+import com.sopt.daisomall.presentation.stockcheck.component.CardStock
 import com.sopt.daisomall.presentation.stockcheck.component.LocationDropdown
 import com.sopt.daisomall.presentation.stockcheck.component.SmallSearchBar
 import com.sopt.daisomall.presentation.stockcheck.component.StockProductCard
 import com.sopt.daisomall.presentation.stockcheck.component.TapGroup
 import com.sopt.daisomall.presentation.stockcheck.component.TitleTopBar
+import com.sopt.daisomall.presentation.stockcheck.model.CardStockDummy
 
 @Composable
 fun StockCheckRoute(
@@ -49,6 +53,7 @@ private fun StockCheckScreen(
 ) {
     Column(
         modifier = modifier
+            .background(DaisoTheme.colors.white)
             .fillMaxSize(),
     ) {
         TitleTopBar(
@@ -138,9 +143,14 @@ private fun StockCheckScreen(
                 color = DaisoTheme.colors.gray5,
                 style = DaisoTheme.typography.body.r12,
             )
-
-            // [FEAT/#34] CardStock 컴포넌트 구현 머지 되면 추가 할 예정
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        CardStock(
+            stores = CardStockDummy,
+            modifier = Modifier.padding(horizontal = 20.dp),
+        )
     }
 }
 
