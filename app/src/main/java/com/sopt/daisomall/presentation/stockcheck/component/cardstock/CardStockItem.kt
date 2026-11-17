@@ -1,6 +1,5 @@
 package com.sopt.daisomall.presentation.stockcheck.component.cardstock
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -18,7 +17,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -47,20 +45,23 @@ fun CardStockItem(
     isFavoriteStore : Boolean,
     modifier: Modifier = Modifier,
 ) {
-    var isEnabled by remember { mutableStateOf(false) }
+    var isBookmarked by remember(isFavoriteStore) {
+        mutableStateOf(isFavoriteStore)
+    }
     val hasStock = stockCount >= 1
 
     Row(
         modifier = modifier
             .fillMaxWidth()
             .height(IntrinsicSize.Min),
-        horizontalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         CardimgProduct(
             imageUrl = imageUrl,
             isOpen = isOpen,
             modifier = Modifier.size(width = 82.dp, height = 110.dp),
         )
+
+        Spacer(modifier = Modifier.width(6.dp))
 
         Column(
             modifier = Modifier
@@ -91,38 +92,71 @@ fun CardStockItem(
                 Spacer(modifier = Modifier.weight(1f))
 
                 Icon(
-                    imageVector =
-                        if (isFavoriteStore) {
-                        ImageVector.vectorResource(R.drawable.ic_bookmark_pressed_24)
-                    } else {
-                        ImageVector.vectorResource(R.drawable.ic_bookmark_default_24)
-                    },
+                    imageVector = ImageVector.vectorResource(
+                        if (isBookmarked) {
+                            R.drawable.ic_bookmark_pressed_24
+                        } else {
+                            R.drawable.ic_bookmark_default_24
+                        }
+                    ),
                     contentDescription = null,
                     tint = Color.Unspecified,
                     modifier = Modifier
                         .noRippleClickable(
-                            isEnabled = !isEnabled,
-                            onClick = TODO()
-                        )
+                            onClick = {
+                                isBookmarked = !isBookmarked
+                            },
+                            isEnabled = true,
+                        ),
                 )
             }
+
+            Spacer(modifier = Modifier.height(4.dp))
+
             Text(
                 text = if (hasStock) {"재고 ${stockCount}개 이하" } else {"일시품절"},
                 color = if (hasStock) DaisoTheme.colors.primaryRed else DaisoTheme.colors.gray6,
                 style = DaisoTheme.typography.body.sb12,
             )
 
-            Spacer(modifier = Modifier.height(6.dp))
+            if (hasStock) {
+                Spacer(modifier = Modifier.height(6.dp))
 
-            LocationTag(
-                floor = floor,
-                number = number,
-                modifier = Modifier.alpha(if (hasStock) 1f else 0f)
-            )
+                LocationTag(
+                    floor = floor,
+                    number = number,
+                )
+            }
 
             Spacer(modifier = Modifier.weight(1f))
+            // 수정 후
+            val buttonType = when (stockStatus) {
+                StockStatus.PICKUP_AVAILABLE -> ButtonType.RED_FILLED
+                StockStatus.PICKUP_CLOSED -> ButtonType.DISABLED
+                StockStatus.OUT_OF_STOCK -> ButtonType.BLACK_LINE
+            }
 
-            when (stockStatus) {
+            val buttonText = when (stockStatus) {
+                StockStatus.PICKUP_AVAILABLE -> "매장픽업"
+                StockStatus.PICKUP_CLOSED -> "픽업미운영"
+                StockStatus.OUT_OF_STOCK -> "재입고알림"
+            }
+
+            val buttonIcon = when (stockStatus) {
+                StockStatus.PICKUP_AVAILABLE -> R.drawable.ic_shoppingbag_small_20
+                StockStatus.PICKUP_CLOSED -> R.drawable.ic_shoppingbag_small_20
+                StockStatus.OUT_OF_STOCK -> R.drawable.ic_bell_20
+            }
+
+            DaisoButton(
+                type = buttonType,
+                text = buttonText,
+                onClick = {},
+                icon = buttonIcon,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            // 수정 전
+          /*  when (stockStatus) {
                 StockStatus.PICKUP_AVAILABLE -> {
                     DaisoButton(
                         type = ButtonType.RED_FILLED,
@@ -151,10 +185,9 @@ fun CardStockItem(
                         icon = R.drawable.ic_bell_20,
                         modifier = Modifier.fillMaxWidth(),
                     )
-                }
+                } */
             }
         }
-    }
 }
 
 @Preview(showBackground = true, widthDp = 335, name = "영업중 & 북마크 O & 재고 O")
