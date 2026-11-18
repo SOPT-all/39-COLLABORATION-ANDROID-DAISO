@@ -16,7 +16,7 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 @Composable
 fun HomeTopBar(
     onSearch: () -> Unit,
-    modifier: Modifier = Modifier.Companion,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.fillMaxWidth()

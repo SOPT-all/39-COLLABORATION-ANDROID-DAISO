@@ -1,9 +1,10 @@
 package com.sopt.daisomall.presentation.home
 
-import android.R.attr.y
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,21 +22,25 @@ import androidx.compose.runtime.getValue
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.presentation.home.component.HomeBanner
-import com.sopt.daisomall.presentation.home.component.HomeBannerData
 import com.sopt.daisomall.presentation.home.component.HomeLogoBar
 import com.sopt.daisomall.presentation.home.component.HomeProductRow
 import com.sopt.daisomall.presentation.home.component.HomeQuickMenuRow
 import com.sopt.daisomall.presentation.home.component.HomeTopBar
+import com.sopt.daisomall.presentation.home.model.HomeViewModel
+import com.sopt.daisomall.presentation.home.model.dummyBanners
+import com.sopt.daisomall.presentation.home.model.dummyHomeProduct
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun HomeRoute(
-    modifier: Modifier = Modifier.Companion,
+    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     HomeScreen(
-        onSearch = {},
         state = state,
+        onLikeClick = viewModel::onLikeClick,
+        onSearch = viewModel::onSearch,
         modifier = modifier,
     )
 }
@@ -43,79 +48,69 @@ fun HomeRoute(
 @Composable
 private fun HomeScreen(
     state: HomeUiState,
+    onLikeClick: (Long) -> Unit,
     onSearch : () -> Unit,
-    modifier: Modifier = Modifier.Companion,
+    modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier,
+
+    LazyColumn(
+        modifier=modifier
+            .fillMaxSize()
+            .background(color = DaisoTheme.colors.white)
     ) {
-        LazyColumn(
-
-        ) {
-            item {
-                HomeLogoBar()
-            }
-            stickyHeader { HomeTopBar(onSearch = {}) }
-            item {
-                HomeBanner(
-                    banners = listOf(
-                        HomeBannerData(
-                            imge = R.drawable.img_bigbanner2,
-                            titleText = "10월 4주차 다이소 신상",
-                            descriptionText = "이번주 핫한 신상품을 소개합니다",
-                        ),
-                        HomeBannerData(
-                            imge = R.drawable.img_bigbanner1,
-                            titleText = "10월 4주차 다이소 신상",
-                            descriptionText = "이번주 핫한 신상품을 소개합니다",
-                        ),
-                        HomeBannerData(
-                            imge = R.drawable.img_bigbanner3,
-                            titleText = "10월 4주차 다이소 신상",
-                            descriptionText = "이번주 핫한 신상품을 소개합니다",
-                        ),
-                    )
-                )
-            }
-
-            item {
-                HomeQuickMenuRow(modifier = Modifier.padding(vertical = 20.dp),)
-            }
-
-            item {
-                Image(
-                    painter = painterResource(id=R.drawable.img_stripbanner),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp)
-                        .padding(horizontal = 20.dp),
-                )
-            }
-            item{Spacer(modifier = Modifier.height(40.dp))}
-
-            item {
-                Text(
-                    text = "고객님을 위한 오늘 추천상품",
-                    style = DaisoTheme.typography.title.b18,
-                    color = DaisoTheme.colors.black,
-                    modifier = Modifier.padding(horizontal = 20.dp)
-                )
-            }
-
-            item{Spacer(modifier = Modifier.height(16.dp))}
-
-            item {
-                HomeProductRow(
-                    products = state.productList,
-                    onLikeClick = TODO(),
-                    modifier = TODO()
-                )
-            }
+        item {
+            HomeLogoBar()
         }
 
+        stickyHeader { HomeTopBar(onSearch = onSearch) }
+
+
+        item {
+            HomeBanner(
+                banners = dummyBanners.toImmutableList(),
+            )
+        }
+
+        item {
+            HomeQuickMenuRow(modifier = Modifier.padding(vertical = 20.dp),)
+        }
+
+        item {
+            Image(
+                painter = painterResource(id=R.drawable.img_stripbanner),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .padding(horizontal = 20.dp),
+            )
+        }
+
+        item{Spacer(modifier = Modifier.height(40.dp))}
+
+        item {
+            Text(
+                text = "고객님을 위한 오늘 추천상품",
+                style = DaisoTheme.typography.title.b18,
+                color = DaisoTheme.colors.black,
+                modifier = Modifier.padding(horizontal = 20.dp)
+            )
+        }
+
+        item{Spacer(modifier = Modifier.height(16.dp))}
+
+        item {
+            HomeProductRow(
+                products = state.productList,
+                onLikeClick = onLikeClick,
+                paddingValues = PaddingValues(horizontal = 20.dp),
+                modifier = Modifier,
+            )
+        }
     }
+
 }
+
 
 
 
@@ -125,6 +120,12 @@ private fun HomeScreen(
 @Composable
 private fun HomeScreenPreview() {
     DaisoMallTheme {
-        HomeRoute()
+        HomeScreen(
+            state = HomeUiState(
+                productList = dummyHomeProduct.toImmutableList(),
+            ),
+            onLikeClick = {} ,
+            onSearch = {},
+        )
     }
 }
