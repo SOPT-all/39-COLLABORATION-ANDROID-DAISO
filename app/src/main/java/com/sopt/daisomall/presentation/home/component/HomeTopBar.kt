@@ -1,5 +1,6 @@
 package com.sopt.daisomall.presentation.home.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.core.designsystem.component.textfield.DaisoToggleTextField
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
+import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
 fun HomeTopBar(
@@ -20,6 +22,7 @@ fun HomeTopBar(
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
+            .background(color = DaisoTheme.colors.white),
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
@@ -33,7 +36,7 @@ fun HomeTopBar(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 20.dp, end = 20.dp, bottom = 10.dp),
+                .padding(start = 20.dp, end = 20.dp, bottom = 15.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             DaisoToggleTextField(
