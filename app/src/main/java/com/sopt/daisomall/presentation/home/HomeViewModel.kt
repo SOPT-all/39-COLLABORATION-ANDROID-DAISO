@@ -1,6 +1,7 @@
 package com.sopt.daisomall.presentation.home
 
 import androidx.lifecycle.ViewModel
+import com.sopt.daisomall.presentation.home.model.dummyHomeProducts
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +14,9 @@ class HomeViewModel : ViewModel() {
     val state: StateFlow<HomeUiState> = _state.asStateFlow()
 
     init {
+        loadProducts()
     }
+
     fun onLikeClick(productId: Long) {
         _state.update { state ->
             state.copy(
@@ -32,5 +35,13 @@ class HomeViewModel : ViewModel() {
 
     }
 
+    private fun loadProducts() {
+        val products = dummyHomeProducts
 
+        _state.update { state ->
+            state.copy(
+                productList = products,
+            )
+        }
+    }
 }

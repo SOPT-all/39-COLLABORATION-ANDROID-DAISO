@@ -27,7 +27,7 @@ import com.sopt.daisomall.presentation.home.component.HomeProductRow
 import com.sopt.daisomall.presentation.home.component.HomeQuickMenuRow
 import com.sopt.daisomall.presentation.home.component.HomeTopBar
 import com.sopt.daisomall.presentation.home.model.dummyBanners
-import com.sopt.daisomall.presentation.home.model.dummyHomeProduct
+import com.sopt.daisomall.presentation.home.model.dummyHomeProducts
 
 @Composable
 fun HomeRoute(
@@ -39,7 +39,7 @@ fun HomeRoute(
         state = state,
         onLikeClick = viewModel::onLikeClick,
         onSearch = viewModel::onSearch,
-        modifier = Modifier.padding(PaddingValues()),
+        modifier = Modifier.padding(paddingValues),
     )
 }
 
@@ -115,7 +115,7 @@ private fun HomeScreenPreview() {
     DaisoMallTheme {
         HomeScreen(
             state = HomeUiState(
-                productList = dummyHomeProduct,
+                productList = dummyHomeProducts,
             ),
             onLikeClick = {} ,
             onSearch = {},

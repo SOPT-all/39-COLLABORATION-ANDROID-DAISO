@@ -10,9 +10,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.presentation.home.model.HomeProductUiModel
-import com.sopt.daisomall.presentation.home.model.dummyHomeProduct
+import com.sopt.daisomall.presentation.home.model.dummyHomeProducts
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun HomeProductRow(
@@ -49,7 +48,7 @@ fun HomeProductRow(
 private fun HomeProductRowPreview() {
     DaisoMallTheme {
         HomeProductRow(
-            products = dummyHomeProduct,
+            products = dummyHomeProducts,
             onLikeClick = {},
             paddingValues = PaddingValues(horizontal = 20.dp)
         )
