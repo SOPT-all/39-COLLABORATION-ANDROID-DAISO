@@ -2,7 +2,9 @@ package com.sopt.daisomall.presentation.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
@@ -20,9 +22,9 @@ import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SearchRoute(
+    paddingValues: PaddingValues,
     navigateBack: () -> Unit,
     navigateToStockCheck: (Long) -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: SearchViewModel = viewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -34,7 +36,7 @@ fun SearchRoute(
         onLikeClick = viewModel::onLikeClick,
         onBackClick = navigateBack,
         onFindClick = navigateToStockCheck,
-        modifier = modifier,
+        modifier = Modifier.padding(paddingValues),
     )
 }
 

@@ -1,5 +1,7 @@
 package com.sopt.daisomall.presentation.search.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -19,11 +21,13 @@ fun NavController.navigateToSearch(
 }
 
 fun NavGraphBuilder.searchNavGraph(
+    paddingValues: PaddingValues,
     navigateBack: () -> Unit,
     navigateToStockCheck: (Long) -> Unit,
 ) {
     composable<Search> {
         SearchRoute(
+            paddingValues = paddingValues,
             navigateBack = navigateBack,
             navigateToStockCheck = navigateToStockCheck,
         )
