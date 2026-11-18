@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.toRoute
 import com.sopt.daisomall.presentation.search.model.dummyProducts
 import com.sopt.daisomall.presentation.search.navigation.Search
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +32,15 @@ class SearchViewModel(
     }
 
     fun onLikeClick(productId: Long) {
-        _state.update { it.toggleLike(productId) }
+        _state.update { state ->
+            state.copy(
+                productList = state.productList.map { product ->
+                    if (product.id == productId) {
+                        product.copy(isLiked = !product.isLiked)
+                    } else product
+                }.toImmutableList()
+            )
+        }
     }
 
     // TODO: API 연결 시 서버 검색 결과로 교체
@@ -41,6 +50,11 @@ class SearchViewModel(
         } else {
             dummyProducts.filter { it.name.contains(keyword) || it.productNumber.contains(keyword) }
         }
-        _state.update { it.searchSucceeded(keyword, products) }
+        _state.update { state ->
+            state.copy(
+                searchedKeyword = keyword,
+                productList = products.toImmutableList(),
+            )
+        }
     }
 }
