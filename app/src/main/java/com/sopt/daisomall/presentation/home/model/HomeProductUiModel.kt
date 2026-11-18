@@ -1,4 +1,4 @@
-package com.sopt.daisomall.presentation.home
+package com.sopt.daisomall.presentation.home.model
 
 data class HomeProductUiModel(
     val id: Long,
