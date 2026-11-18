@@ -3,30 +3,19 @@ package com.sopt.daisomall.presentation.search
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
-import com.sopt.daisomall.presentation.search.component.ProductCard
-import com.sopt.daisomall.presentation.search.component.SearchFilterRow
 import com.sopt.daisomall.presentation.search.component.SearchResultList
-import com.sopt.daisomall.presentation.search.component.SearchSortRow
 import com.sopt.daisomall.presentation.search.component.SearchTextFieldTopBar
-import com.sopt.daisomall.presentation.search.model.ProductUiModel
 import com.sopt.daisomall.presentation.search.model.dummyProducts
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
