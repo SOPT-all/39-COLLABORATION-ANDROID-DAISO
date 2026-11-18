@@ -3,7 +3,7 @@ package com.sopt.daisomall.presentation.main
 import androidx.annotation.DrawableRes
 import com.sopt.daisomall.R
 import com.sopt.daisomall.core.navigation.MainTabRoute
-import com.sopt.daisomall.core.navigation.Route
+import com.sopt.daisomall.presentation.search.navigation.Search
 
 enum class MainTab(
     @param:DrawableRes val iconRes: Int,
@@ -26,7 +26,7 @@ enum class MainTab(
     STOCK_CHECK(
         iconRes = R.drawable.ic_stock_24,
         selectedIconRes = R.drawable.ic_stock_24,
-        route = MainTabRoute.StockCheck,
+        route = Search(),
         label = "재고조회",
     ),
     DISCOVER(
@@ -46,8 +46,5 @@ enum class MainTab(
     companion object {
         fun find(predicate: (MainTabRoute) -> Boolean): MainTab? =
             entries.find { predicate(it.route) }
-
-        fun contains(predicate: (Route) -> Boolean): Boolean =
-            entries.map { it.route }.any { predicate(it) }
     }
 }
