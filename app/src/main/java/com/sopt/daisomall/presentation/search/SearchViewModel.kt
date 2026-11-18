@@ -54,7 +54,6 @@ class SearchViewModel(
         }
         _state.update { state ->
             state.copy(
-                searchedKeyword = keyword,
                 productList = products.toImmutableList(),
             )
         }

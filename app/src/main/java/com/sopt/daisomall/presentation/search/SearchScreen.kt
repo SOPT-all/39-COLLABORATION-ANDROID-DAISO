@@ -74,7 +74,6 @@ private fun SearchScreenPreview() {
     DaisoMallTheme {
         SearchScreen(
             state = SearchUiState(
-                searchedKeyword = "마스크",
                 productList = dummyProducts.toImmutableList(),
             ),
             searchTextFieldState = rememberTextFieldState(initialText = "마스크"),
