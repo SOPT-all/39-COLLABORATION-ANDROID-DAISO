@@ -1,6 +1,8 @@
 package com.sopt.daisomall.presentation.home.model
 
-val dummyHomeProduct = listOf(
+import kotlinx.collections.immutable.persistentListOf
+
+val dummyHomeProduct = persistentListOf(
     HomeProductUiModel(
         id = 1023456,
         name = "[생기충전]VT PDRN 톤온 젤리 시트 마스크 1매입",

@@ -1,8 +1,9 @@
 package com.sopt.daisomall.presentation.home.model
 
 import com.sopt.daisomall.R
+import kotlinx.collections.immutable.persistentListOf
 
-val dummyBanners = listOf(
+val dummyBanners = persistentListOf(
     HomeBannerUiModel(
         image = R.drawable.img_bigbanner2,
         titleText = "10월 4주차 다이소 신상",

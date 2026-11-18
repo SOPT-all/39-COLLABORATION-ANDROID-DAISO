@@ -16,23 +16,21 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 fun HomeQuickMenuRow(
     modifier: Modifier = Modifier,
 ) {
+
     Row(
         modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp),
+        horizontalArrangement = Arrangement.spacedBy(20.dp),
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp),
-            horizontalArrangement = Arrangement.spacedBy(20.dp),
-        ) {
-            QuickMenuItem(image = R.drawable.img_quickbanner1, text = "다이소핫템")
-            QuickMenuItem(image = R.drawable.img_quickbanner2, text = "랭킹")
-            QuickMenuItem(image = R.drawable.img_quickbanner3, text = "기획전")
-            QuickMenuItem(image = R.drawable.img_quickbanner4, text = "신상")
-            QuickMenuItem(image = R.drawable.img_quickbanner6, text = "오늘배송")
-        }
+        QuickMenuItem(image = R.drawable.img_quickbanner1, text = "다이소핫템")
+        QuickMenuItem(image = R.drawable.img_quickbanner2, text = "랭킹")
+        QuickMenuItem(image = R.drawable.img_quickbanner3, text = "기획전")
+        QuickMenuItem(image = R.drawable.img_quickbanner4, text = "신상")
+        QuickMenuItem(image = R.drawable.img_quickbanner6, text = "오늘배송")
     }
-    }
+}
+
 
 @Preview
 @Composable
