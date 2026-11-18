@@ -21,7 +21,7 @@ fun HomeBanner(
 ) {
     val pagerState= rememberPagerState(
         initialPage = 1,
-        pageCount = { banners.size },
+        pageCount = { banners.size / 2 },
     )
 
     HorizontalPager(

@@ -49,7 +49,7 @@ fun HomeProductRow(
 private fun HomeProductRowPreview() {
     DaisoMallTheme {
         HomeProductRow(
-            products = dummyHomeProduct.toImmutableList(),
+            products = dummyHomeProduct,
             onLikeClick = {},
             paddingValues = PaddingValues(horizontal = 20.dp)
         )

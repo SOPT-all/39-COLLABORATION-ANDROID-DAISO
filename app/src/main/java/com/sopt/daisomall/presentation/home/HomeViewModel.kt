@@ -1,7 +1,6 @@
-package com.sopt.daisomall.presentation.home.model
+package com.sopt.daisomall.presentation.home
 
 import androidx.lifecycle.ViewModel
-import com.sopt.daisomall.presentation.home.HomeUiState
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,11 +12,13 @@ class HomeViewModel : ViewModel() {
 
     val state: StateFlow<HomeUiState> = _state.asStateFlow()
 
+    init {
+    }
     fun onLikeClick(productId: Long) {
         _state.update { state ->
             state.copy(
                 productList = state.productList.map { product ->
-                    if (product.id==productId) {
+                    if (product.id == productId) {
                         product.copy(isLiked = !product.isLiked)
                     } else {
                         product
@@ -30,4 +31,6 @@ class HomeViewModel : ViewModel() {
     fun onSearch() {
 
     }
+
+
 }

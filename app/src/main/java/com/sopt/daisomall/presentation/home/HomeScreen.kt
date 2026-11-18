@@ -26,14 +26,12 @@ import com.sopt.daisomall.presentation.home.component.HomeLogoBar
 import com.sopt.daisomall.presentation.home.component.HomeProductRow
 import com.sopt.daisomall.presentation.home.component.HomeQuickMenuRow
 import com.sopt.daisomall.presentation.home.component.HomeTopBar
-import com.sopt.daisomall.presentation.home.model.HomeViewModel
 import com.sopt.daisomall.presentation.home.model.dummyBanners
 import com.sopt.daisomall.presentation.home.model.dummyHomeProduct
-import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun HomeRoute(
-    modifier: Modifier = Modifier,
+    paddingValues: PaddingValues,
     viewModel: HomeViewModel = viewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -41,7 +39,7 @@ fun HomeRoute(
         state = state,
         onLikeClick = viewModel::onLikeClick,
         onSearch = viewModel::onSearch,
-        modifier = modifier,
+        modifier = Modifier.padding(PaddingValues()),
     )
 }
 
@@ -52,10 +50,11 @@ private fun HomeScreen(
     onSearch : () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-
     LazyColumn(
         modifier=modifier
             .fillMaxSize()
+            .padding(bottom = 21.dp
+            )
             .background(color = DaisoTheme.colors.white)
     ) {
         item {
@@ -64,10 +63,9 @@ private fun HomeScreen(
 
         stickyHeader { HomeTopBar(onSearch = onSearch) }
 
-
         item {
             HomeBanner(
-                banners = dummyBanners.toImmutableList(),
+                banners = dummyBanners,
             )
         }
 
@@ -111,18 +109,13 @@ private fun HomeScreen(
 
 }
 
-
-
-
-
-
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
     DaisoMallTheme {
         HomeScreen(
             state = HomeUiState(
-                productList = dummyHomeProduct.toImmutableList(),
+                productList = dummyHomeProduct,
             ),
             onLikeClick = {} ,
             onSearch = {},
