@@ -31,10 +31,6 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun onSearch() {
-
-    }
-
     private fun loadProducts() {
         val products = dummyHomeProducts
 

@@ -32,13 +32,14 @@ import com.sopt.daisomall.presentation.home.model.dummyHomeProducts
 @Composable
 fun HomeRoute(
     paddingValues: PaddingValues,
+    navigateToSearch: (String) -> Unit,
     viewModel: HomeViewModel = viewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     HomeScreen(
         state = state,
         onLikeClick = viewModel::onLikeClick,
-        onSearch = viewModel::onSearch,
+        onSearch = navigateToSearch,
         modifier = Modifier.padding(paddingValues),
     )
 }
@@ -47,7 +48,7 @@ fun HomeRoute(
 private fun HomeScreen(
     state: HomeUiState,
     onLikeClick: (Long) -> Unit,
-    onSearch : () -> Unit,
+    onSearch: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(

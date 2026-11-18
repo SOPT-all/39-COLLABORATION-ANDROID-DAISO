@@ -17,7 +17,7 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 
 @Composable
 fun HomeTopBar(
-    onSearch: () -> Unit,
+    onSearch: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -39,10 +39,12 @@ fun HomeTopBar(
                 .padding(start = 20.dp, end = 20.dp, bottom = 15.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
+            val textFieldState = rememberTextFieldState()
+
             DaisoToggleTextField(
-                state = rememberTextFieldState(),
+                state = textFieldState,
                 placeholder = "상품, 품번, 브랜드 검색",
-                onSearch = onSearch,
+                onSearch = { onSearch(textFieldState.text.toString()) },
                 modifier = Modifier.fillMaxWidth(),
             )
         }

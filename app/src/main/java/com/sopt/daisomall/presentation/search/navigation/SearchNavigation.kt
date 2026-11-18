@@ -5,12 +5,12 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.sopt.daisomall.core.navigation.Route
+import com.sopt.daisomall.core.navigation.MainTabRoute
 import com.sopt.daisomall.presentation.search.SearchRoute
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Search(val keyword: String = "") : Route
+data class Search(val keyword: String = "") : MainTabRoute
 
 fun NavController.navigateToSearch(
     keyword: String = "",
