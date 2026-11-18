@@ -37,7 +37,9 @@ class SearchViewModel(
                 productList = state.productList.map { product ->
                     if (product.id == productId) {
                         product.copy(isLiked = !product.isLiked)
-                    } else product
+                    } else {
+                        product
+                    }
                 }.toImmutableList()
             )
         }
