@@ -21,6 +21,7 @@ import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.presentation.search.component.ProductCard
 import com.sopt.daisomall.presentation.search.component.SearchFilterRow
+import com.sopt.daisomall.presentation.search.component.SearchResultList
 import com.sopt.daisomall.presentation.search.component.SearchSortRow
 import com.sopt.daisomall.presentation.search.component.SearchTextFieldTopBar
 import com.sopt.daisomall.presentation.search.model.ProductUiModel
@@ -75,51 +76,6 @@ private fun SearchScreen(
             onFindClick = onFindClick,
             modifier = Modifier.weight(1f),
         )
-    }
-}
-
-@Composable
-private fun SearchResultList(
-    products: ImmutableList<ProductUiModel>,
-    onLikeClick: (Long) -> Unit,
-    onFindClick: (Long) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    LazyColumn(
-        modifier = modifier.fillMaxWidth(),
-    ) {
-        item {
-            SearchFilterRow(
-                modifier = Modifier.padding(top = 10.dp, bottom = 20.dp),
-            )
-        }
-
-        item {
-            SearchSortRow()
-        }
-
-        itemsIndexed(
-            items = products,
-            key = { _, product -> product.id }
-        ) { index, product ->
-            ProductCard(
-                productNumber = product.productNumber,
-                productName = product.name,
-                price = product.price,
-                imageUrl = product.imageUrl,
-                reviewCount = product.reviewCount,
-                isLiked = product.isLiked,
-                onLikeClick = { onLikeClick(product.id) },
-                onFindClick = { onFindClick(product.id) },
-                modifier = Modifier.padding(20.dp),
-            )
-            if (index != products.lastIndex) {
-                HorizontalDivider(
-                    thickness = 1.dp,
-                    color = DaisoTheme.colors.gray1
-                )
-            }
-        }
     }
 }
 
