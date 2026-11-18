@@ -1,5 +1,6 @@
 package com.sopt.daisomall.presentation.home
 
+import android.R.attr.y
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.daisomall.R
+import androidx.compose.runtime.getValue
 import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.presentation.home.component.HomeBanner
@@ -25,18 +29,22 @@ import com.sopt.daisomall.presentation.home.component.HomeTopBar
 
 @Composable
 fun HomeRoute(
-    modifier: Modifier = Modifier.Companion
+    modifier: Modifier = Modifier.Companion,
+    viewModel: HomeViewModel = viewModel(),
 ) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
     HomeScreen(
         onSearch = {},
-        modifier = modifier
+        state = state,
+        modifier = modifier,
     )
 }
 
 @Composable
 private fun HomeScreen(
+    state: HomeUiState,
     onSearch : () -> Unit,
-    modifier: Modifier = Modifier.Companion
+    modifier: Modifier = Modifier.Companion,
 ) {
     Column(
         modifier = modifier,
@@ -99,7 +107,7 @@ private fun HomeScreen(
 
             item {
                 HomeProductRow(
-                    products = TODO(),
+                    products = state.productList,
                     onLikeClick = TODO(),
                     modifier = TODO()
                 )
