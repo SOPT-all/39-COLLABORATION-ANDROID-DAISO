@@ -1,7 +1,6 @@
 package com.sopt.daisomall.presentation.search.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
