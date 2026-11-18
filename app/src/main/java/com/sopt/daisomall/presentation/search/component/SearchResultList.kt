@@ -7,10 +7,14 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sopt.daisomall.core.designsystem.theme.DaisoMallTheme
 import com.sopt.daisomall.core.designsystem.theme.DaisoTheme
 import com.sopt.daisomall.presentation.search.model.ProductUiModel
+import com.sopt.daisomall.presentation.search.model.dummyProducts
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SearchResultList(
@@ -54,5 +58,17 @@ fun SearchResultList(
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun SearchResultListPreview() {
+    DaisoMallTheme {
+        SearchResultList(
+            products = dummyProducts.toImmutableList(),
+            onLikeClick = {},
+            onFindClick = {},
+        )
     }
 }
