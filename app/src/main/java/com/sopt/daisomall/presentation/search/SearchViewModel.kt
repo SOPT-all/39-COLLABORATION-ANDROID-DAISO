@@ -10,11 +10,8 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.toRoute
 import com.sopt.daisomall.core.di.RepositoryPool
-import com.sopt.daisomall.core.di.ServicePool
-import com.sopt.daisomall.data.datasource.impl.ProductDataSourceImpl
 import com.sopt.daisomall.data.mapper.toUiModel
 import com.sopt.daisomall.data.repository.api.ProductRepository
-import com.sopt.daisomall.data.repository.impl.ProductRepositoryImpl
 import com.sopt.daisomall.presentation.search.navigation.Search
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
