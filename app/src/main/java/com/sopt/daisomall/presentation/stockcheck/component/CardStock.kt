@@ -40,6 +40,7 @@ import kotlinx.collections.immutable.persistentListOf
 @Composable
 fun CardStock(
     stores: ImmutableList<StockStoreModel>,
+    onBookmarkClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -53,6 +54,9 @@ fun CardStock(
         ) { item ->
             CardStockItem(
                 stockStore = item,
+                onBookmarkClick = {
+                    onBookmarkClick(item.storeId)
+                },
             )
         }
     }
@@ -61,6 +65,7 @@ fun CardStock(
 @Composable
 private fun CardStockItem(
     stockStore : StockStoreModel,
+    onBookmarkClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var isBookmarked by remember(stockStore.isFavoriteStore) {
@@ -118,7 +123,7 @@ private fun CardStockItem(
                     modifier = Modifier
                         .noRippleClickable(
                             onClick = {
-                                isBookmarked = !isBookmarked
+                                onBookmarkClick()
                             },
                             isEnabled = true,
                         ),
@@ -177,6 +182,6 @@ private fun CardStockItem(
 @Composable
 private fun CardStockPreview() {
     DaisoMallTheme {
-        CardStock(stores = CardStockDummy)
+        CardStock(stores = CardStockDummy, onBookmarkClick = {})
     }
 }

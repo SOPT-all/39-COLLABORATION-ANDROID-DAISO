@@ -10,11 +10,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sopt.daisomall.R
 import com.sopt.daisomall.core.designsystem.component.button.DaisoFilter
 import com.sopt.daisomall.core.designsystem.component.chip.DaisoIconChip
@@ -38,17 +40,24 @@ import com.sopt.daisomall.presentation.stockcheck.model.CardStockDummy
 
 @Composable
 fun StockCheckRoute(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: StockCheckViewModel = viewModel(),
 ) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
     StockCheckScreen(
+        state = state,
+        onSoldOutChip = viewModel::onSoldOutChip,
+        onBookmarkClick = viewModel::onBookmarkClick,
         modifier = modifier,
-        isSelected = true
     )
 }
 
 @Composable
 private fun StockCheckScreen(
-    isSelected : Boolean,
+    state: StockCheckUiState,
+    onSoldOutChip: (Boolean) -> Unit,
+    onBookmarkClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -110,8 +119,10 @@ private fun StockCheckScreen(
             )
 
             DaisoSoldOutChip(
-                isSelected = isSelected,
-                onClick = {},
+                isSelected = state.isSoldOutExcluded,
+                onClick = {
+                    onSoldOutChip(!state.isSoldOutExcluded)
+                },
             )
 
             DaisoIconChip(
@@ -148,7 +159,8 @@ private fun StockCheckScreen(
         Spacer(modifier = Modifier.height(10.dp))
 
         CardStock(
-            stores = CardStockDummy,
+            stores = state.stores,
+            onBookmarkClick = onBookmarkClick,
             modifier = Modifier.padding(horizontal = 20.dp),
         )
     }
@@ -159,6 +171,13 @@ private fun StockCheckScreen(
 @Composable
 private fun StockCheckScreenPreview() {
     DaisoMallTheme {
-        StockCheckScreen(isSelected = false)
+        StockCheckScreen(
+            state = StockCheckUiState(
+                stores = CardStockDummy,
+                isSoldOutExcluded = false,
+            ),
+            onSoldOutChip = {},
+            onBookmarkClick = {},
+        )
     }
 }
