@@ -3,17 +3,18 @@ package com.sopt.daisomall.presentation.search
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.toRoute
+import com.sopt.daisomall.core.di.RepositoryPool
 import com.sopt.daisomall.core.di.ServicePool
 import com.sopt.daisomall.data.datasource.impl.ProductDataSourceImpl
 import com.sopt.daisomall.data.mapper.toUiModel
 import com.sopt.daisomall.data.repository.api.ProductRepository
 import com.sopt.daisomall.data.repository.impl.ProductRepositoryImpl
-import com.sopt.daisomall.presentation.search.model.dummyProducts
 import com.sopt.daisomall.presentation.search.navigation.Search
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -61,24 +62,22 @@ class SearchViewModel(
         viewModelScope.launch {
             productRepository.getProducts(keyword.ifBlank { null })
                 .onSuccess { products ->
-                    _state.update {
-                        it.copy(productList = products.map { p ->
-                            p.toUiModel()
+                    _state.update { state ->
+                        state.copy(productList = products.map {
+                            it.toUiModel()
                         }.toImmutableList())
                     }
                 }
-                .onFailure { Timber.e(it) /* 또는 Log.e */ }
+                .onFailure { Timber.e(it) }
         }
     }
 
     companion object {
-        val Factory = viewModelFactory {
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 SearchViewModel(
                     savedStateHandle = createSavedStateHandle(),
-                    productRepository = ProductRepositoryImpl(
-                        ProductDataSourceImpl(ServicePool.productService),
-                    ),
+                    productRepository = RepositoryPool.productRepository,
                 )
             }
         }
