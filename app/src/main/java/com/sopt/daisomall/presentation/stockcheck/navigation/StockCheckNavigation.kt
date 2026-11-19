@@ -26,7 +26,7 @@ fun NavGraphBuilder.stockCheckNavGraph(
 ) {
     composable<StockCheck> {
         StockCheckRoute(
-            modifier = Modifier.padding(paddingValues),
+            paddingValues = paddingValues,
         )
     }
 }
