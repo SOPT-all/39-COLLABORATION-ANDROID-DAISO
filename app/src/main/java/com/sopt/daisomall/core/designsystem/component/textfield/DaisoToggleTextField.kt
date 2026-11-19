@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +36,12 @@ fun DaisoToggleTextField(
     onSearch: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val focusManager = LocalFocusManager.current
+    val search: () -> Unit = {
+        focusManager.clearFocus()
+        onSearch()
+    }
+
     Row(
         modifier = modifier
             .background(color = DaisoTheme.colors.gray1, shape = RoundedCornerShape(2.dp))
@@ -59,13 +66,13 @@ fun DaisoToggleTextField(
             placeholderStyle = DaisoTheme.typography.body.m14,
             modifier = Modifier.weight(1f),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            onKeyboardAction = { onSearch() },
+            onKeyboardAction = { search() },
             lineLimits = TextFieldLineLimits.SingleLine,
             suffix = {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_search_20),
                     contentDescription = null,
-                    modifier = Modifier.noRippleClickable(onClick = onSearch),
+                    modifier = Modifier.noRippleClickable(onClick = search),
                     tint = DaisoTheme.colors.gray6,
                 )
             },

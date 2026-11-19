@@ -1,0 +1,34 @@
+package com.sopt.daisomall.presentation.search.navigation
+
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
+import androidx.navigation.compose.composable
+import com.sopt.daisomall.core.navigation.MainTabRoute
+import com.sopt.daisomall.presentation.search.SearchRoute
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Search(val keyword: String = "") : MainTabRoute
+
+fun NavController.navigateToSearch(
+    keyword: String = "",
+    navOptions: NavOptions? = null,
+) {
+    navigate(Search(keyword = keyword), navOptions)
+}
+
+fun NavGraphBuilder.searchNavGraph(
+    paddingValues: PaddingValues,
+    navigateBack: () -> Unit,
+    navigateToStockCheck: (Long) -> Unit,
+) {
+    composable<Search> {
+        SearchRoute(
+            paddingValues = paddingValues,
+            navigateBack = navigateBack,
+            navigateToStockCheck = navigateToStockCheck,
+        )
+    }
+}
