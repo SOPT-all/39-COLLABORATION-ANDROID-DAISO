@@ -1,6 +1,7 @@
 package com.sopt.daisomall.presentation.stockcheck
 
 import androidx.lifecycle.ViewModel
+import com.sopt.daisomall.presentation.stockcheck.model.CardStockDummy
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,6 +12,10 @@ class StockCheckViewModel : ViewModel() {
     private val _state = MutableStateFlow(StockCheckUiState())
 
     val state: StateFlow<StockCheckUiState> = _state.asStateFlow()
+
+    init {
+        loadStores()
+    }
 
     fun onSoldOutChip(checked: Boolean) {
         _state.update { state ->
@@ -32,6 +37,16 @@ class StockCheckViewModel : ViewModel() {
                         store
                     }
                 }.toImmutableList(),
+            )
+        }
+    }
+
+    private fun loadStores() {
+        val loadstores = CardStockDummy
+
+        _state.update { state ->
+            state.copy(
+                stores = loadstores,
             )
         }
     }
