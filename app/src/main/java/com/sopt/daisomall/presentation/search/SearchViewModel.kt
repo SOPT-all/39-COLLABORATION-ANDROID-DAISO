@@ -3,7 +3,16 @@ package com.sopt.daisomall.presentation.search
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.createSavedStateHandle
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.toRoute
+import com.sopt.daisomall.core.di.ServicePool
+import com.sopt.daisomall.data.datasource.impl.ProductDataSourceImpl
+import com.sopt.daisomall.data.mapper.toUiModel
+import com.sopt.daisomall.data.repository.api.ProductRepository
+import com.sopt.daisomall.data.repository.impl.ProductRepositoryImpl
 import com.sopt.daisomall.presentation.search.model.dummyProducts
 import com.sopt.daisomall.presentation.search.navigation.Search
 import kotlinx.collections.immutable.toImmutableList
@@ -11,9 +20,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class SearchViewModel(
     savedStateHandle: SavedStateHandle,
+    private val productRepository: ProductRepository,
 ) : ViewModel() {
 
     private val initialKeyword: String = savedStateHandle.toRoute<Search>().keyword
@@ -45,17 +57,30 @@ class SearchViewModel(
         }
     }
 
-    // TODO: API 연결 시 서버 검색 결과로 교체
     private fun loadProducts(keyword: String) {
-        val products = if (keyword.isEmpty()) {
-            dummyProducts
-        } else {
-            dummyProducts.filter { it.name.contains(keyword) || it.productNumber.contains(keyword) }
+        viewModelScope.launch {
+            productRepository.getProducts(keyword.ifBlank { null })
+                .onSuccess { products ->
+                    _state.update {
+                        it.copy(productList = products.map { p ->
+                            p.toUiModel()
+                        }.toImmutableList())
+                    }
+                }
+                .onFailure { Timber.e(it) /* 또는 Log.e */ }
         }
-        _state.update { state ->
-            state.copy(
-                productList = products.toImmutableList(),
-            )
+    }
+
+    companion object {
+        val Factory = viewModelFactory {
+            initializer {
+                SearchViewModel(
+                    savedStateHandle = createSavedStateHandle(),
+                    productRepository = ProductRepositoryImpl(
+                        ProductDataSourceImpl(ServicePool.productService),
+                    ),
+                )
+            }
         }
     }
 }
