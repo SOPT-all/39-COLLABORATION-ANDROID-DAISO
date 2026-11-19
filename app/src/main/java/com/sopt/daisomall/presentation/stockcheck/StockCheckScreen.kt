@@ -84,7 +84,6 @@ private fun StockCheckScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // 여기 논의 해야함 *수정필요*
         TapGroup()
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -137,7 +136,7 @@ private fun StockCheckScreen(
         }
 
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .padding(vertical = 10.dp, horizontal = 20.dp)
                 .align(Alignment.Start),
             horizontalArrangement = Arrangement.spacedBy(5.dp),
