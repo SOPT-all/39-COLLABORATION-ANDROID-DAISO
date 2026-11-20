@@ -25,7 +25,7 @@ fun SearchRoute(
     paddingValues: PaddingValues,
     navigateBack: () -> Unit,
     navigateToStockCheck: (Long) -> Unit,
-    viewModel: SearchViewModel = viewModel(),
+    viewModel: SearchViewModel = viewModel(factory = SearchViewModel.Factory),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
