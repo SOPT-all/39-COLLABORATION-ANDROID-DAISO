@@ -10,7 +10,5 @@ import com.sopt.daisomall.data.service.ProductService
  * val productService: ProductService by lazy { ApiFactory.create<ProductService>() }
  */
 object ServicePool {
-    val productService: ProductService by lazy {
-        ApiFactory.create<ProductService>()
-    }
+    val productService: ProductService by lazy { ApiFactory.create<ProductService>() }
 }

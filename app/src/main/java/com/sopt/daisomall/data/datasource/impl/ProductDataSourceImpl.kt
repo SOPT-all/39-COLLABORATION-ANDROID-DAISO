@@ -7,6 +7,10 @@ import com.sopt.daisomall.data.service.ProductService
 class ProductDataSourceImpl(
     private val productService: ProductService,
 ) : ProductDataSource {
+    override suspend fun getProducts(
+        keyword: String?
+    ) = productService.getProducts(keyword)
+
     override suspend fun patchLike(
         productId: Long,
         request: ProductLikeRequestDto,
