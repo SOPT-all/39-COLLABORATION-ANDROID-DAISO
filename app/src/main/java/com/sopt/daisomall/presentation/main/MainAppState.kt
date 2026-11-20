@@ -6,7 +6,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
@@ -14,6 +13,7 @@ import com.sopt.daisomall.core.navigation.Route
 import com.sopt.daisomall.core.navigation.MainTabRoute
 import com.sopt.daisomall.presentation.home.navigation.navigateToHome
 import com.sopt.daisomall.presentation.search.navigation.navigateToSearch
+import com.sopt.daisomall.presentation.splash.navigation.Splash
 import com.sopt.daisomall.presentation.stockcheck.navigation.StockCheck
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -26,7 +26,7 @@ class MainAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
 ) {
-    val startDestination: Route = MainTabRoute.Home
+    val startDestination: Route = Splash
 
     private val currentDestination: StateFlow<NavDestination?> = navController.currentBackStackEntryFlow
         .map { it.destination }
@@ -61,7 +61,7 @@ class MainAppState(
 
     fun navigate(tab: MainTab) {
         val navOptions = navOptions {
-            popUpTo(navController.graph.findStartDestination().id)
+            popUpTo<MainTabRoute.Home>()
             launchSingleTop = true
         }
 
