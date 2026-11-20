@@ -30,8 +30,7 @@
 
 ## 📸 시연 영상
 
-<!--추가 예정-->
-
+<video src="https://github.com/user-attachments/assets/993700e4-59e3-4878-a5c8-4aa3a2d117d8" width="360" controls></video>
 
 <br/>
 
