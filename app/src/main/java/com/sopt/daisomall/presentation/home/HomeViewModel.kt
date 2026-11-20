@@ -3,7 +3,7 @@ package com.sopt.daisomall.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sopt.daisomall.core.di.RepositoryPool.productRepository
-import com.sopt.daisomall.presentation.home.model.dummyHomeProducts
+import com.sopt.daisomall.data.mapper.toHomeProductUiModel
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,13 +20,17 @@ class HomeViewModel : ViewModel() {
         loadProducts()
     }
 
+    // keyword 없이 요청하면 서버가 추천순으로 내려줌
     private fun loadProducts() {
-        val products = dummyHomeProducts
-
-        _state.update { state ->
-            state.copy(
-                productList = products,
-            )
+        viewModelScope.launch {
+            productRepository.getProducts(keyword = null)
+                .onSuccess { products ->
+                    _state.update { state ->
+                        state.copy(
+                            productList = products.map { it.toHomeProductUiModel() }.toImmutableList(),
+                        )
+                    }
+                }
         }
     }
 
