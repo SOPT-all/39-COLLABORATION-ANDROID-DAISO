@@ -1,10 +1,13 @@
 package com.sopt.daisomall.core.di
 
 import com.sopt.daisomall.data.datasource.impl.ProductDataSourceImpl
+import com.sopt.daisomall.data.datasource.impl.StockBookmarkDatasourceImpl
 import com.sopt.daisomall.data.datasource.impl.StoreDatasourceImpl
 import com.sopt.daisomall.data.repository.api.ProductRepository
+import com.sopt.daisomall.data.repository.api.StoreBookmarkRepository
 import com.sopt.daisomall.data.repository.api.StoreRepository
 import com.sopt.daisomall.data.repository.impl.ProductRepositoryImpl
+import com.sopt.daisomall.data.repository.impl.StoreBookmarkRepositoryImpl
 import com.sopt.daisomall.data.repository.impl.StoreRepositoryImpl
 
 /**
@@ -20,6 +23,12 @@ object RepositoryPool {
     val storeRepository: StoreRepository by lazy {
         StoreRepositoryImpl(
             storeDatasource = StoreDatasourceImpl(ServicePool.storeService),
+        )
+    }
+
+    val storeBookmarkRepository: StoreBookmarkRepository by lazy {
+        StoreBookmarkRepositoryImpl(
+            storeBookmarkDatasource = StockBookmarkDatasourceImpl(ServicePool.storeBookmarkService),
         )
     }
 }

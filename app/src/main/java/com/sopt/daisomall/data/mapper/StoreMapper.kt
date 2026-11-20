@@ -41,9 +41,9 @@ fun StoreStockModel.toStockStoreModel(): StockStoreModel = StockStoreModel(
     storeName = storeName,
     distanceMeters = distanceMeters.toInt(),
     stockCount = stockQuantity,
-    // TODO: 서버 응답에 층·번호 정보 없음
-    floor = "",
-    number = "",
+    // 서버 응답에 층·번호 정보가 없어 고정값 사용
+    floor = "2F",
+    number = "2번",
     stockStatus = when {
         stockQuantity == 0 -> StockStatus.OUT_OF_STOCK
         isPickupAvailable -> StockStatus.PICKUP_AVAILABLE

@@ -75,6 +75,7 @@ fun HomeRecommendCard(
             text = productName,
             style = DaisoTheme.typography.body.m12,
             color = DaisoTheme.colors.gray10,
+            minLines = 2,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
         )
