@@ -2,12 +2,15 @@ package com.sopt.daisomall.data.service
 
 import com.sopt.daisomall.core.network.BaseResponse
 import com.sopt.daisomall.data.dto.StoreBookmarkDto
+import com.sopt.daisomall.data.dto.StoreBookmarkRequestDto
+import retrofit2.http.Body
 import retrofit2.http.PATCH
 import retrofit2.http.Path
 
 interface StoreBookmarkService {
     @PATCH("/api/v1/stores/{storeId}/favorite")
     suspend fun patchStoreBookmarks(
-        @Path("storeId") storeId : Long
+        @Path("storeId") storeId : Long,
+        @Body request: StoreBookmarkRequestDto,
     ): BaseResponse<StoreBookmarkDto>
 }
