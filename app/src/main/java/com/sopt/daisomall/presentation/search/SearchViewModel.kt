@@ -38,7 +38,9 @@ class SearchViewModel(
     }
 
     fun search() {
-        loadProducts(searchTextFieldState.text.toString().trim())
+        val keyword = searchTextFieldState.text.toString().trim()
+        if (keyword.isEmpty()) return
+        loadProducts(keyword)
     }
 
     fun onLikeClick(productId: Long) {

@@ -38,8 +38,10 @@ fun DaisoToggleTextField(
 ) {
     val focusManager = LocalFocusManager.current
     val search: () -> Unit = {
-        focusManager.clearFocus()
-        onSearch()
+        if (state.text.isNotBlank()) {
+            focusManager.clearFocus()
+            onSearch()
+        }
     }
 
     Row(
