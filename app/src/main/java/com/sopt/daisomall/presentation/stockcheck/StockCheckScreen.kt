@@ -44,7 +44,7 @@ import com.sopt.daisomall.presentation.stockcheck.model.CardStockDummy
 @Composable
 fun StockCheckRoute(
     paddingValues: PaddingValues,
-    viewModel: StockCheckViewModel = viewModel(),
+    viewModel: StockCheckViewModel = viewModel(factory = StockCheckViewModel.Factory),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -75,15 +75,17 @@ private fun StockCheckScreen(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        StockProductCard(
-            imageUrl = "",
-            title = "[화잘먹/80매]마미케어 바다포도 스킨팩",
-            price = "5,000",
-            productCode = 1075034,
-            modifier = Modifier
-                .padding(horizontal = 20.dp)
-                .fillMaxWidth(),
-        )
+        state.product?.let { product ->
+            StockProductCard(
+                imageUrl = product.imageUrl,
+                title = product.name,
+                price = product.price,
+                productCode = product.productNumber.toIntOrNull() ?: 0,
+                modifier = Modifier
+                    .padding(horizontal = 20.dp)
+                    .fillMaxWidth(),
+            )
+        }
 
         Spacer(modifier = Modifier.height(20.dp))
 
