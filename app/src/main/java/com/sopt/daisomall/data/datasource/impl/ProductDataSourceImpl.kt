@@ -1,7 +1,7 @@
-package com.sopt.daisomall.data.repository.impl
+package com.sopt.daisomall.data.datasource.impl
 
+import com.sopt.daisomall.data.datasource.api.ProductDataSource
 import com.sopt.daisomall.data.dto.ProductLikeRequestDto
-import com.sopt.daisomall.data.repository.api.ProductDataSource
 import com.sopt.daisomall.data.service.ProductService
 
 class ProductDataSourceImpl(
