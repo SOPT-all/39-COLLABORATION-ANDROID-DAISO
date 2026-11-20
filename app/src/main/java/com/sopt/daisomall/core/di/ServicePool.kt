@@ -1,6 +1,7 @@
 package com.sopt.daisomall.core.di
 
 import com.sopt.daisomall.core.network.ApiFactory
+import com.sopt.daisomall.data.service.ProductService
 import com.sopt.daisomall.data.service.StoreService
 
 /**
@@ -10,5 +11,6 @@ import com.sopt.daisomall.data.service.StoreService
  * val productService: ProductService by lazy { ApiFactory.create<ProductService>() }
  */
 object ServicePool {
+    val productService: ProductService by lazy { ApiFactory.create<ProductService>() }
     val storeService: StoreService by lazy { ApiFactory.create<StoreService>() }
 }
