@@ -1,6 +1,7 @@
 package com.sopt.daisomall.data.datasource.impl
 
 import com.sopt.daisomall.data.datasource.api.ProductDataSource
+import com.sopt.daisomall.data.dto.ProductLikeRequestDto
 import com.sopt.daisomall.data.service.ProductService
 
 class ProductDataSourceImpl(
@@ -9,4 +10,9 @@ class ProductDataSourceImpl(
     override suspend fun getProducts(
         keyword: String?
     ) = productService.getProducts(keyword)
+
+    override suspend fun patchLike(
+        productId: Long,
+        request: ProductLikeRequestDto,
+    ) = productService.patchLike(productId, request)
 }
