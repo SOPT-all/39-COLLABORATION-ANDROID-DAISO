@@ -1,7 +1,7 @@
 package com.sopt.daisomall.data.mapper
 
+import com.sopt.daisomall.data.dto.ProductDto
 import com.sopt.daisomall.data.dto.ProductStoresResponseDto
-import com.sopt.daisomall.data.dto.StoreProductDto
 import com.sopt.daisomall.data.dto.StoreStockDto
 import com.sopt.daisomall.data.model.ProductStoresModel
 import com.sopt.daisomall.data.model.StoreProductModel
@@ -12,11 +12,11 @@ import com.sopt.daisomall.presentation.stockcheck.type.StockStatus
 private const val BUSINESS_STATUS_OPEN = "OPEN"
 
 fun ProductStoresResponseDto.toModel(): ProductStoresModel = ProductStoresModel(
-    product = product.toModel(),
+    product = product.toStoreProductModel(),
     stores = stores.map { it.toModel() },
 )
 
-fun StoreProductDto.toModel(): StoreProductModel = StoreProductModel(
+fun ProductDto.toStoreProductModel(): StoreProductModel = StoreProductModel(
     productId = productId,
     productNumber = productNumber,
     name = name,
