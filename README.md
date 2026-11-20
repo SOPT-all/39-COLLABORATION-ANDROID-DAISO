@@ -30,7 +30,7 @@
 
 ## 📸 시연 영상
 
-<video src="https://github.com/user-attachments/assets/65d397b9-c9f7-4214-b87c-db76447b7522" width="360" controls></video>
+https://github.com/user-attachments/assets/65d397b9-c9f7-4214-b87c-db76447b7522
 
 <br/>
 
