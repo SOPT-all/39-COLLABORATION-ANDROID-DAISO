@@ -47,6 +47,7 @@ fun MainNavHost(
 
         stockCheckNavGraph(
             paddingValues = paddingValues,
+            navigateBack = navController::navigateUp,
         )
     }
 }

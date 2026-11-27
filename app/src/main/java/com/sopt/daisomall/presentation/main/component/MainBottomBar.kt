@@ -6,7 +6,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideIn
 import androidx.compose.animation.slideOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -49,7 +48,6 @@ internal fun MainBottomBar(
                 .background(color = DaisoTheme.colors.white)
                 .navigationBarsPadding()
                 .padding(horizontal = 20.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
             tabs.forEach { tab ->
@@ -58,6 +56,7 @@ internal fun MainBottomBar(
                         tab = tab,
                         selected = (tab == currentTab),
                         onClick = { onTabSelected(tab) },
+                        modifier = Modifier.weight(1f),
                     )
                 }
             }
@@ -70,9 +69,10 @@ private fun MainBottomBarItem(
     tab: MainTab,
     selected: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = Modifier.noRippleClickable(onClick = onClick),
+        modifier = modifier.noRippleClickable(onClick = onClick),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(

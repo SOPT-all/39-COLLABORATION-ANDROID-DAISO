@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.input.clearText
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -44,7 +45,11 @@ fun HomeTopBar(
             DaisoToggleTextField(
                 state = textFieldState,
                 placeholder = "상품, 품번, 브랜드 검색",
-                onSearch = { onSearch(textFieldState.text.toString()) },
+                onSearch = {
+                    onSearch(textFieldState.text.toString())
+                    // 검색 화면에서 홈으로 돌아왔을 때 검색어가 남지 않도록 비움
+                    textFieldState.clearText()
+                },
                 modifier = Modifier.fillMaxWidth(),
             )
         }

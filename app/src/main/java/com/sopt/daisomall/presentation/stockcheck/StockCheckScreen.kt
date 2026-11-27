@@ -44,6 +44,7 @@ import com.sopt.daisomall.presentation.stockcheck.model.CardStockDummy
 @Composable
 fun StockCheckRoute(
     paddingValues: PaddingValues,
+    navigateBack: () -> Unit,
     viewModel: StockCheckViewModel = viewModel(factory = StockCheckViewModel.Factory),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -52,6 +53,7 @@ fun StockCheckRoute(
         state = state,
         onSoldOutChip = viewModel::onSoldOutChip,
         onBookmarkClick = viewModel::onBookmarkClick,
+        onBackClick = navigateBack,
         modifier = Modifier.padding(paddingValues),
     )
 }
@@ -61,6 +63,7 @@ private fun StockCheckScreen(
     state: StockCheckUiState,
     onSoldOutChip: (Boolean) -> Unit,
     onBookmarkClick: (Long) -> Unit,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -70,7 +73,7 @@ private fun StockCheckScreen(
     ) {
         TitleTopBar(
             title = "매장재고 조회",
-            onBackClick = {},
+            onBackClick = onBackClick,
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -188,6 +191,7 @@ private fun StockCheckScreenPreview() {
             ),
             onSoldOutChip = {},
             onBookmarkClick = {},
+            onBackClick = {},
         )
     }
 }
