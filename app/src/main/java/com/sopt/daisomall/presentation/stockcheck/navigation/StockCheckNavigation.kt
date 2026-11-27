@@ -23,10 +23,12 @@ fun NavController.navigateToStockCheck(
 
 fun NavGraphBuilder.stockCheckNavGraph(
     paddingValues: PaddingValues,
+    navigateBack: () -> Unit,
 ) {
     composable<StockCheck> {
         StockCheckRoute(
             paddingValues = paddingValues,
+            navigateBack = navigateBack,
         )
     }
 }
